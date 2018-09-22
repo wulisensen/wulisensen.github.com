@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8">
+  <title>Redis操作文档 | WuLiSenSen</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>
+    if (window.location.pathname == '/') {
+      window.location.href = '/javascript/';
+    }
+  </script>
+  <!-- Canonical links -->
+  <link rel="canonical" href="https://hexo.io/zh-cn/redis/index.html">
+  <!-- Alternative links -->
+  
+    
+      <link rel="alternative" hreflang="en" href="https://hexo.io/redis/index.html">
+    
+      <link rel="alternative" hreflang="zh-tw" href="https://hexo.io/zh-tw/redis/index.html">
+    
+      <link rel="alternative" hreflang="zh-cn" href="https://hexo.io/zh-cn/redis/index.html">
+    
+      <link rel="alternative" hreflang="ru" href="https://hexo.io/ru/redis/index.html">
+    
+      <link rel="alternative" hreflang="ko" href="https://hexo.io/ko/redis/index.html">
+    
+      <link rel="alternative" hreflang="pt-br" href="https://hexo.io/pt-br/redis/index.html">
+    
+  
+  <!-- Icon -->
+  <link rel="apple-touch-icon" sizes="57x57" href="/icon/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/icon/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/icon/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/icon/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/icon/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/icon/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/icon/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/icon/apple-touch-icon-152x152.png">
+  <link rel="icon" type="image/png" href="/icon/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/icon/favicon-160x160.png" sizes="160x160">
+  <link rel="icon" type="image/png" href="/icon/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/icon/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/icon/favicon-32x32.png" sizes="32x32">
+  <meta name="msapplication-TileColor" content="#2f83cd">
+  <meta name="msapplication-TileImage" content="/icon/mstile-144x144.png">
+  <!-- CSS -->
+  <link href="http://p0.ifengimg.com/a/2018/0118/navy.css" rel="stylesheet" type="text/css">
+  <!-- <link href="//fonts.lug.ustc.edu.cn/css?family=Lato:300,400,700" rel="stylesheet" type="text/css"> -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
+  <style>
+  .article-content{ min-height: 500px; }
+  </style>
+  <!-- RSS -->
+  <link rel="alternate" href="/atom.xml" title="WuLiSenSen">
+  <!-- Open Graph -->
+  <meta name="description" content="redis 数据类型讲解 以及 适合场景http://www.360doc.com/content/15/0324/16/5054188_457703414.shtml 1 存储结构Redis 是以字典的结构存储数据的, 通过键值对的方式进行存储(key=&amp;gt;value) , 在储存类型中有5种 (1)字符串类型, (2)散列类型, (3)列表类型, (4)集合类型, (5)有序集合类型 2">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Redis操作文档">
+<meta property="og:url" content="https://hexo.io/zh-cn/redis/index.html">
+<meta property="og:site_name" content="WuLiSenSen">
+<meta property="og:description" content="redis 数据类型讲解 以及 适合场景http://www.360doc.com/content/15/0324/16/5054188_457703414.shtml 1 存储结构Redis 是以字典的结构存储数据的, 通过键值对的方式进行存储(key=&amp;gt;value) , 在储存类型中有5种 (1)字符串类型, (2)散列类型, (3)列表类型, (4)集合类型, (5)有序集合类型 2">
+<meta property="og:locale" content="zh-cn">
+<meta property="og:updated_time" content="2018-01-19T09:06:59.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Redis操作文档">
+<meta name="twitter:description" content="redis 数据类型讲解 以及 适合场景http://www.360doc.com/content/15/0324/16/5054188_457703414.shtml 1 存储结构Redis 是以字典的结构存储数据的, 通过键值对的方式进行存储(key=&amp;gt;value) , 在储存类型中有5种 (1)字符串类型, (2)散列类型, (3)列表类型, (4)集合类型, (5)有序集合类型 2">
+<meta name="twitter:site" content="hexojs">
+<meta property="fb:admins" content="100000247608790">
+  <!-- Google Analytics -->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-48498357-3', 'auto');
+  ga('send', 'pageview');
+</script>
+
+</head>
+
+<body>
+  <div id="container">
+    <header id="header" class="wrapper">
+  <div id="header-inner" class="inner">
+    <h1 id="logo-wrap">
+      <a href="/zh-cn/" id="logo"></a>
+    </h1>
+    <nav id="main-nav">
+      <a href="/javascript/" class="main-nav-link">JavaScript</a><a href="/css/" class="main-nav-link">CSS</a><a href="/python/" class="main-nav-link">Python</a><a href="/redis/" class="main-nav-link">Redis</a><a href="/mysql/" class="main-nav-link">MySQL</a><a href="/mongodb/" class="main-nav-link">MongoDB</a><a href="/linux/" class="main-nav-link">Linux</a><a href="/nginx/" class="main-nav-link">Nginx</a><a href="/git/" class="main-nav-link">Git</a>
+    </nav>
+    <a id="mobile-nav-toggle">
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+    </a>
+  </div>
+</header>
+
+    <div id="content-wrap">
+  <div id="content" class="wrapper">
+    <div id="content-inner">
+      <article class="article-container" itemscope itemtype="http://schema.org/Article">
+        <div class="article-inner">
+          <div class="article">
+            <div class="inner">
+              <header class="article-header">
+                <h1 class="article-title" itemprop="name">Redis操作文档</h1>
+                <a href="https://github.com/hexojs/site/edit/master/source/zh-cn/redis/index.md" class="article-edit-link" title="改进本文"><i class="fa fa-pencil"></i></a>
+              </header>
+              <div class="article-content" itemprop="articleBody">
+                <p>redis 数据类型讲解 以及 适合场景<a href="http://www.360doc.com/content/15/0324/16/5054188_457703414.shtml" target="_blank" rel="noopener">http://www.360doc.com/content/15/0324/16/5054188_457703414.shtml</a></p>
+<h2 id="1-存储结构" class="article-heading"><a href="#1-存储结构" class="headerlink" title="1 存储结构"></a>1 存储结构<a class="article-anchor" href="#1-存储结构" aria-hidden="true"></a></h2><p>Redis 是以字典的结构存储数据的, 通过键值对的方式进行存储(key=&gt;value) , 在储存类型中有5种 (1)字符串类型, (2)散列类型, (3)列表类型, (4)集合类型, (5)有序集合类型</p>
+<h2 id="2-内存存储持久化" class="article-heading"><a href="#2-内存存储持久化" class="headerlink" title="2 内存存储持久化"></a>2 内存存储持久化<a class="article-anchor" href="#2-内存存储持久化" aria-hidden="true"></a></h2><p>Redis 可以在一秒内读写超过10万个键值, 并且Redis 可以为每个键值设置生存时间(生存时间到后键会被自动删除)</p>
+<h2 id="3-功能" class="article-heading"><a href="#3-功能" class="headerlink" title="3 功能"></a>3 功能<a class="article-anchor" href="#3-功能" aria-hidden="true"></a></h2><p>Memcached 支持多线程, Redis是单线程模式, Redis支持服务器集群, Redis 可以限定数据占用最大的内存空间(如达到空间, 则可按照规则淘汰不需要的键)<br>Redis的列表行键可用来实现队列, 并且支持阻塞式读取 <code>目前多数公司对Redis的应用以缓存和队列为主 Redis 支持事物 , 不支持回滚</code></p>
+<h2 id="4-Redis-配置" class="article-heading"><a href="#4-Redis-配置" class="headerlink" title="4 Redis 配置"></a>4 Redis 配置<a class="article-anchor" href="#4-Redis-配置" aria-hidden="true"></a></h2><p>Redis</p>
+<p>(1)可以通过配置文件来配置/path/to/redis.conf是否开启持久化, 日志级别等.</p>
+<p>(2)也可通过配置文件的模板来配置redis.conf</p>
+<p>(3)还可通过 CONFIG SET命令进行修改配置</p>
+<h2 id="5-多数据库" class="article-heading"><a href="#5-多数据库" class="headerlink" title="5 多数据库"></a>5 多数据库<a class="article-anchor" href="#5-多数据库" aria-hidden="true"></a></h2><p>Redis 是以字典结构的存储服务器, redis默认支持16个数据库 从0开始递增 可以通过SELECT 1 来切换数据库, Redis数据库不支持自定义命名,数据库以编号命名(从0递增) Redis 不支持为每个数据库设置不同的访问密码</p>
+<h2 id="6-Redis-支持事物" class="article-heading"><a href="#6-Redis-支持事物" class="headerlink" title="6 Redis 支持事物"></a>6 Redis 支持事物<a class="article-anchor" href="#6-Redis-支持事物" aria-hidden="true"></a></h2><h2 id="7-Redis-类型" class="article-heading"><a href="#7-Redis-类型" class="headerlink" title="7 Redis 类型"></a>7 Redis 类型<a class="article-anchor" href="#7-Redis-类型" aria-hidden="true"></a></h2><h3 id="1-字符串类型-命令" class="article-heading"><a href="#1-字符串类型-命令" class="headerlink" title="1, 字符串类型 命令 :"></a>1, 字符串类型 命令 :<a class="article-anchor" href="#1-字符串类型-命令" aria-hidden="true"></a></h3><p>赋值: SET chace_name xzq<br>取值: GET chace_name (return xzq)<br>递增数字: INCR chace_name (return 1 , 如当前值为整数,可以会自动递增 再次输入 INCR chace_name return = 2)<br>增加指定的整数 : INCRBY chace_name 2 (chace_name = 1 return 3 )<br>递减数字 : DECR chace_name (chace_name = 2 return = 1 )<br>减少指定的整数 : DECRBY chace_name 2 (chace_name = 3 reutrn 1)<br>增加指定的浮点数 : INCRBYFLOAT chace_name 2.7<br>增加指定的科学计数法: INCRBYFLOAT chace_name 5E+4<br>向尾部追加值 : APPEND chace_name “ word!” (chace_name = hello return = “hello word!”)<br>获取字符串长度 : STRLEN chace_name (一个中文字符 占三个字节)<br>同时设置多个键值 : MSET key1 a key2 b key3 3<br>同时获取多个值 : MGET key1 key2 ( return = {2,3} )<br>位操作 : 左移右移 (由于本人对左移 右移 迷糊 请参考相关文档)<br>总结: 字符串类型如果存储文章类信息 需要 先将文章序列化 之后在进行存储 , 存储比较简单.可以用来存储文章类信息(缺点: 如果我只想取出文章标题 , 那么需要将整个字符串取出 然后进行反序列化 )</p>
+<h3 id="2-散列类型-命令" class="article-heading"><a href="#2-散列类型-命令" class="headerlink" title="2, 散列类型 命令 :"></a>2, 散列类型 命令 :<a class="article-anchor" href="#2-散列类型-命令" aria-hidden="true"></a></h3><p>赋值 : HSET chace_name zhangsan 20<br>赋值 : HSET chace_name lisi 30<br>取值 : HGET chace_name zhangsan ( return = 20 )<br>同时设置多个值 : HMSET chace_name key1 v1 key2 v2<br>同时获取多个值 : HMGET chace_name key1 key2 ( return = {v1, v2} )<br>获取所有键值 : HGETALL chace_name {return = {key1:v1, key2: v2} 返回值为对象 }<br>判断字段是否存在 : HEXISTS chace_name key1 (存在return = 1 , 不存在 return=0 )<br>当字段不存在时赋值 : HSETNX chace_name key3 v3 (如: key3不存在 则赋值 , 如存在则不变)<br>增加数字 : CHINCRBY chace_name key1 15 (key1 = 10 return 25 返回结果为增长后的结果)<br>删除一个或多个字段 : HDEL chace_name key1 (return = 1 当键存在删除成功则返回值为1 当键不存在则返回值为0)<br>只获取字段名 : HKEYS chace_name ( return = {key1, key2} )<br>只获取字段值 : HVALS chace_name ( return = {v1, v2 } )</p>
+<p>总结 : 我个人认为 可以将散列类型当做一维数组 进行操作</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">$chace_name = array(</span><br><span class="line">    title =&gt; '文章1',</span><br><span class="line">    time =&gt; '20161117',</span><br><span class="line">    content =&gt; '内容.....',</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<h3 id="3-列表类型-命令" class="article-heading"><a href="#3-列表类型-命令" class="headerlink" title="3, 列表类型 命令 :"></a>3, 列表类型 命令 :<a class="article-anchor" href="#3-列表类型-命令" aria-hidden="true"></a></h3><p>向列表左侧增加元素 : LPUSH chace_name v1<br>向列表右侧增加元素 : RPUSH chace_name v1<br>列表左边弹出一个元素 : LPOP chace_name<br>列表左边弹出一个元素 : RPOP chace_name<br>获取列表中元素的个数 : LLEN chace_name ( 类似于 select count(*) from table_name )<br>获得列表片段 : LRANGE chace_name 0 100 (return {v1, v2})(如果 参数100 大于实际范围 那么将会获取都最右边的元素)<br>删除列表中指定的值 : LREM chace_name -1 2 (删除从右边开始第一个值为2的元素)<br>获取列表指定索引的值 : LINDEX chace_name 0 (第0个索引值 , -1 最后一个索引值)<br>索引赋值 : LSET chace_name 1 lisi (为索引为1的 赋值为 lisi)<br>删除指定索引范围之外的元素 : LTRIM chace_name 0 2 (与 LRANGE 命令相似)<br>LITRIM 此命令通常与LPUSH 联合使用 : 应用场景: 如 我只想保留最新的100条记录 LPUSH chace_name $log1 , LTRIM chace_name 0 99<br>向列表中差入元素 : LINSERT chace_name AFTER 2 zhangsan (会根据 第二个参数决定 是差入到 该元素的前边或后边 , AFTER / BEFORE )<br>将元素从一个列表转入到另一个列表 : RPOPLPUSH chace_name chace_name2 (此命令会从 name1 最右边弹出一个 加入到name2 的左边)<br><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">$chace_name = array(</span><br><span class="line">    0 =&gt; zhangsan</span><br><span class="line">    1 =&gt; lisi</span><br><span class="line">    2 =&gt; wangwu</span><br><span class="line">);</span><br></pre></td></tr></table></figure></p>
+<h3 id="4-无序集合类型-命令" class="article-heading"><a href="#4-无序集合类型-命令" class="headerlink" title="4, 无序集合类型, 命令:"></a>4, 无序集合类型, 命令:<a class="article-anchor" href="#4-无序集合类型-命令" aria-hidden="true"></a></h3><p>应用场景: 目前观象台应用到权限列表中,<br>赋值: SADD chace_name string(a b) (如果 a 存在 那么将追加b)<br>删除: SREM chace_name string(a b c)<br>取值: SMEMBERS chace_name (获取集合中所有的元素)<br>验证: SISMEMBERS chace_name (判断一个元素是否在集合中, 是返回1, 否返回0 )<br>集合间运算<br>两个参数取差集: SDIFF setA setB 此命令用于A-B 的差集 以A为主 A{1,2,3} B{2,3,4} A-B = {1}<br>多个参数取差集: SDIFF setA setB setC 此命令支持 多个参数取差集 (先计算A-B 在用结果 与C 取差集)<br>两个参数取交集: SINTER setA setB 此命令用于A 与 B的交集<br>多个参数取交集: SINTER setA setB setC 此命令支持多个参数取交集<br>两个参数取并集: SUNION setA setB 代表所有属于A 或属于B的元素构成的集合 A{1,2,3} B{2,3,4} = {1,2,3,4}<br>多个参数取并集: SUNION setA setB setC 此命令支持多个参数取并集<br>获取集合中元素的个数: SCARD chace_name (return 个数)<br>获取集合中的随机元素: SRANDMEMBER chace_name<br>随机弹出一个元素: SPOP chace_name<br>从列表左边弹出一个元素: LPOP chace_name<br>获取集合中指定个数随机元素: SRANDMEMBER chace_name 5(第二个参数为个数,正数(获取不重复的值,如个数大于元素总个数将获取所有 , -5(负数将会获取指定个数的元素, 会出现重复元素)))<br>总结: SADD命令 用来向集合增加一个或多个元素, 如果键不存在 则自动创建. (在一个集合中不能有相同的元素)<br>元素在redis 中存储格式为一维数组</p>
+<h3 id="5-有序集合-命令" class="article-heading"><a href="#5-有序集合-命令" class="headerlink" title="5, 有序集合, 命令 :"></a>5, 有序集合, 命令 :<a class="article-anchor" href="#5-有序集合-命令" aria-hidden="true"></a></h3><p>应用场景: 适用于文章访问量, 考试分数, 等等. 存储格式array(lisi,80,zs,90,xzq,100)<br>赋值: ZADD chace_name 80 lisi 90 zs 100 xzq (分数支持正数, 科学技术法, 双精度浮点数 17E+307 xzq , 10.8 xzq)<br>修改: ZADD chace_name 200 xzq<br>取值: ZSCORE chace_name xzq (return ‘200’ )<br>取值并携带分数: ZRANGE chace_name 0 -1 WITHSCORES (在末尾增加 WINTHSCORES 参数) (return {lisi:80 , zs:90 , xzq:100})<br>取值并携带分数: ZREVRANGE chace_name 0 -1 WITHSCORES (return 结果 为从大到小返回结果的)<br>获取分数在某个范围元素列表 : ZRANGE chace_name 50 80 (return {zhangsan,lisi}) (索引是从0开始, -1从后向前查找)<br>跳跃性取值: ZRANGEBYSCORE chace_name 50 +inf limit 1 3 (获取分 数高于50分 并且从第二个人开始的, 从小到大开始排序)<br>增加元素分数: ZINCRBY chace_name 20 xzq (return 120 返回结果为 更改后的分数) (个人认为适用于点击量,访问量等)<br>减少元素分数: ZINCRBY chace_name -10 xzq (return 110 返回结果为更改后的分数)<br>其他命令:<br>获取有序集合中的个数: ZCARD chace_name<br>获取指定分数范围的元素个数 : ZCOUNT chace_name 80 100<br>删除一个或多个元素 :<br>按照排名范围删除元素 :<br>按照分数范围删除元素 :<br>计算有序集合的交集 :<br>总结 : 列表不能简单的条整某个元素的位置,而有序集合要比列表烈性更耗内存, 有序集合类型算是redis中最高级的类型了,有序集合为每一个元素都关联了一个分数, 虽然集合中每个元素都是不同的,但是他们的分数 却可以相同. 有序集合类型在某些方面与列表类型有些相似(具体区别查看相关文档)</p>
+<p>flushall ——&gt; 清空整个 Redis 服务器的数据(删除所有数据库的所有 key )<br>flushdb ——&gt; 清空当前数据库中的所有 key</p>
+<h3 id="6-Redis-任务队列" class="article-heading"><a href="#6-Redis-任务队列" class="headerlink" title="6, Redis 任务队列"></a>6, Redis 任务队列<a class="article-anchor" href="#6-Redis-任务队列" aria-hidden="true"></a></h3><h3 id="1-什么是任务队列" class="article-heading"><a href="#1-什么是任务队列" class="headerlink" title="1 , 什么是任务队列 :"></a>1 , 什么是任务队列 :<a class="article-anchor" href="#1-什么是任务队列" aria-hidden="true"></a></h3><p>超市买东西 -&gt; 排队 -&gt; 结账</p>
+<h3 id="2-使用Redis-实现任务队列" class="article-heading"><a href="#2-使用Redis-实现任务队列" class="headerlink" title="2 , 使用Redis 实现任务队列"></a>2 , 使用Redis 实现任务队列<a class="article-anchor" href="#2-使用Redis-实现任务队列" aria-hidden="true"></a></h3><p>实现简单的任务队列 : 可使用 LPUSH 和 RPOP</p>
+<p>使用 python 实现任务队列</p>
+<h2 id="连接远程redis" class="article-heading"><a href="#连接远程redis" class="headerlink" title="连接远程redis"></a>连接远程redis<a class="article-anchor" href="#连接远程redis" aria-hidden="true"></a></h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">redis-cli -h 127.0.0.1 -p 6379 -a 123456</span><br></pre></td></tr></table></figure>
+              </div>
+              <footer class="article-footer">
+                <time class="article-footer-updated" datetime="2018-01-19T09:06:59.000Z" itemprop="dateModified">上次更新：2018-01-19</time>
+                
+              </footer>
+              
+
+<script>
+  var disqus_shortname = 'hexojs';
+  var disqus_url = 'https://hexo.io/zh-cn/redis/index.html';
+  var disqus_title = "Redis操作文档";
+  var disqus_config = function(){
+    this.language = 'zh';
+  };
+  (function(){
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = 'https://go.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+            </div>
+          </div>
+          <aside id="article-toc" role="navigation">
+            <div id="article-toc-inner">
+              <strong class="sidebar-title">目录</strong>
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-存储结构"><span class="toc-text">1 存储结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-内存存储持久化"><span class="toc-text">2 内存存储持久化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-功能"><span class="toc-text">3 功能</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Redis-配置"><span class="toc-text">4 Redis 配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-多数据库"><span class="toc-text">5 多数据库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-Redis-支持事物"><span class="toc-text">6 Redis 支持事物</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-Redis-类型"><span class="toc-text">7 Redis 类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-字符串类型-命令"><span class="toc-text">1, 字符串类型 命令 :</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-散列类型-命令"><span class="toc-text">2, 散列类型 命令 :</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-列表类型-命令"><span class="toc-text">3, 列表类型 命令 :</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-无序集合类型-命令"><span class="toc-text">4, 无序集合类型, 命令:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-有序集合-命令"><span class="toc-text">5, 有序集合, 命令 :</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-Redis-任务队列"><span class="toc-text">6, Redis 任务队列</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-什么是任务队列"><span class="toc-text">1 , 什么是任务队列 :</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-使用Redis-实现任务队列"><span class="toc-text">2 , 使用Redis 实现任务队列</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#连接远程redis"><span class="toc-text">连接远程redis</span></a></li></ol>
+              <a href="#" id="article-toc-top">回到顶部</a>
+            </div>
+          </aside>
+        </div>
+      </article>
+      <aside id="sidebar" role="navigation">
+  <div class="inner">
+    <strong class="sidebar-title">Redis</strong><a href="index.html" class="sidebar-link current">基础</a>
+  </div>
+</aside>
+    </div>
+  </div>
+</div>
+
+    <footer id="footer" class="wrapper">
+  <div class="inner">
+    <div id="footer-copyright">
+      &copy; 2018 <a href="https://github.com/wulisensen/MyBlog" target="_blank">https://github.com/wulisensen/MyBlog</a><br>
+     如果你有任何问题，可以给我发邮件 wuguangsenwow@163.com
+    </div>
+  </div>
+</footer>
+
+  </div>
+  <div id="mobile-nav-dimmer"></div>
+  <nav id="mobile-nav">
+  <div id="mobile-nav-inner">
+    <ul id="mobile-nav-list">
+      <a href="/javascript/" class="mobile-nav-link">JavaScript</a><a href="/css/" class="mobile-nav-link">CSS</a><a href="/python/" class="mobile-nav-link">Python</a><a href="/redis/" class="mobile-nav-link">Redis</a><a href="/mysql/" class="mobile-nav-link">MySQL</a><a href="/mongodb/" class="mobile-nav-link">MongoDB</a><a href="/linux/" class="mobile-nav-link">Linux</a><a href="/nginx/" class="mobile-nav-link">Nginx</a><a href="/git/" class="mobile-nav-link">Git</a>
+      <li class="mobile-nav-item">
+        <a href="https://github.com/hexojs/hexo" class="mobile-nav-link" rel="external" target="_blank">GitHub</a>
+      </li>
+    </ul>
+    
+      <strong class="mobile-nav-title">Redis</strong><a href="index.html" class="mobile-nav-link current">基础</a>
+    
+  </div>
+  <div id="mobile-lang-select-wrap">
+    <span id="mobile-lang-select-label"><i class="fa fa-globe"></i><span>简体中文</span></span>
+    <select id="mobile-lang-select" data-canonical="">
+      
+        <option value="en">English</option>
+      
+        <option value="zh-tw">正體中文</option>
+      
+        <option value="zh-cn" selected>简体中文</option>
+      
+        <option value="ru">Русский</option>
+      
+        <option value="ko">한국어</option>
+      
+        <option value="pt-br">Português (Brasil)</option>
+      
+    </select>
+  </div>
+</nav>
+  <!-- Scripts -->
+<!-- build:js build/js/main.js -->
+<script src="/js/lang_select.js"></script>
+<script src="http://p2.ifengimg.com/a/2017/1229/toc.js"></script>
+<script src="http://p2.ifengimg.com/a/2017/1229/mobile_nav.js"></script>
+<!-- endbuild -->
+
+<!-- Algolia -->
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script>
+<script type="text/javascript">
+document.getElementById('search-input-wrap').classList.add('on');
+docsearch({
+  apiKey: 'cdea7d4e47d84f6145b77e7f68689f35',
+  indexName: 'hexo_zh-cn',
+  inputSelector: '#search-input'
+});
+</script>
+
+
+</body>
+</html>

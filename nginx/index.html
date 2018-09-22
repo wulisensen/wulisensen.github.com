@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8">
+  <title>Nginx更改配置教程 | WuLiSenSen</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>
+    if (window.location.pathname == '/') {
+      window.location.href = '/javascript/';
+    }
+  </script>
+  <!-- Canonical links -->
+  <link rel="canonical" href="https://hexo.io/zh-cn/nginx/index.html">
+  <!-- Alternative links -->
+  
+    
+      <link rel="alternative" hreflang="en" href="https://hexo.io/nginx/index.html">
+    
+      <link rel="alternative" hreflang="zh-tw" href="https://hexo.io/zh-tw/nginx/index.html">
+    
+      <link rel="alternative" hreflang="zh-cn" href="https://hexo.io/zh-cn/nginx/index.html">
+    
+      <link rel="alternative" hreflang="ru" href="https://hexo.io/ru/nginx/index.html">
+    
+      <link rel="alternative" hreflang="ko" href="https://hexo.io/ko/nginx/index.html">
+    
+      <link rel="alternative" hreflang="pt-br" href="https://hexo.io/pt-br/nginx/index.html">
+    
+  
+  <!-- Icon -->
+  <link rel="apple-touch-icon" sizes="57x57" href="/icon/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/icon/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/icon/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/icon/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/icon/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/icon/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/icon/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/icon/apple-touch-icon-152x152.png">
+  <link rel="icon" type="image/png" href="/icon/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/icon/favicon-160x160.png" sizes="160x160">
+  <link rel="icon" type="image/png" href="/icon/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/icon/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/icon/favicon-32x32.png" sizes="32x32">
+  <meta name="msapplication-TileColor" content="#2f83cd">
+  <meta name="msapplication-TileImage" content="/icon/mstile-144x144.png">
+  <!-- CSS -->
+  <link href="http://p0.ifengimg.com/a/2018/0118/navy.css" rel="stylesheet" type="text/css">
+  <!-- <link href="//fonts.lug.ustc.edu.cn/css?family=Lato:300,400,700" rel="stylesheet" type="text/css"> -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
+  <style>
+  .article-content{ min-height: 500px; }
+  </style>
+  <!-- RSS -->
+  <link rel="alternate" href="/atom.xml" title="WuLiSenSen">
+  <!-- Open Graph -->
+  <meta name="description" content="1、远程连接sshssh root@ip 2、查看有没有nginxnginx 3、查看nginx有没有安装yum install nginx 4、通过ip试下能不能访问nginx5、检查nginx配置是否正确nginx -t 6、去目录 /etc/nginx/conf.d如果目录内为空，这创建web.conf 配置wen.conf 7、配置好后，检查配置是否正确nginx -t 8、重启nginx">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Nginx更改配置教程">
+<meta property="og:url" content="https://hexo.io/zh-cn/nginx/index.html">
+<meta property="og:site_name" content="WuLiSenSen">
+<meta property="og:description" content="1、远程连接sshssh root@ip 2、查看有没有nginxnginx 3、查看nginx有没有安装yum install nginx 4、通过ip试下能不能访问nginx5、检查nginx配置是否正确nginx -t 6、去目录 /etc/nginx/conf.d如果目录内为空，这创建web.conf 配置wen.conf 7、配置好后，检查配置是否正确nginx -t 8、重启nginx">
+<meta property="og:locale" content="zh-cn">
+<meta property="og:updated_time" content="2018-01-19T08:20:07.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Nginx更改配置教程">
+<meta name="twitter:description" content="1、远程连接sshssh root@ip 2、查看有没有nginxnginx 3、查看nginx有没有安装yum install nginx 4、通过ip试下能不能访问nginx5、检查nginx配置是否正确nginx -t 6、去目录 /etc/nginx/conf.d如果目录内为空，这创建web.conf 配置wen.conf 7、配置好后，检查配置是否正确nginx -t 8、重启nginx">
+<meta name="twitter:site" content="hexojs">
+<meta property="fb:admins" content="100000247608790">
+  <!-- Google Analytics -->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-48498357-3', 'auto');
+  ga('send', 'pageview');
+</script>
+
+</head>
+
+<body>
+  <div id="container">
+    <header id="header" class="wrapper">
+  <div id="header-inner" class="inner">
+    <h1 id="logo-wrap">
+      <a href="/zh-cn/" id="logo"></a>
+    </h1>
+    <nav id="main-nav">
+      <a href="/javascript/" class="main-nav-link">JavaScript</a><a href="/css/" class="main-nav-link">CSS</a><a href="/python/" class="main-nav-link">Python</a><a href="/redis/" class="main-nav-link">Redis</a><a href="/mysql/" class="main-nav-link">MySQL</a><a href="/mongodb/" class="main-nav-link">MongoDB</a><a href="/linux/" class="main-nav-link">Linux</a><a href="/nginx/" class="main-nav-link">Nginx</a><a href="/git/" class="main-nav-link">Git</a>
+    </nav>
+    <a id="mobile-nav-toggle">
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+    </a>
+  </div>
+</header>
+
+    <div id="content-wrap">
+  <div id="content" class="wrapper">
+    <div id="content-inner">
+      <article class="article-container" itemscope itemtype="http://schema.org/Article">
+        <div class="article-inner">
+          <div class="article">
+            <div class="inner">
+              <header class="article-header">
+                <h1 class="article-title" itemprop="name">Nginx更改配置教程</h1>
+                <a href="https://github.com/hexojs/site/edit/master/source/zh-cn/nginx/index.md" class="article-edit-link" title="改进本文"><i class="fa fa-pencil"></i></a>
+              </header>
+              <div class="article-content" itemprop="articleBody">
+                <h2 id="1、远程连接ssh" class="article-heading"><a href="#1、远程连接ssh" class="headerlink" title="1、远程连接ssh"></a>1、远程连接ssh<a class="article-anchor" href="#1、远程连接ssh" aria-hidden="true"></a></h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ssh root@ip</span><br></pre></td></tr></table></figure>
+<h2 id="2、查看有没有nginx" class="article-heading"><a href="#2、查看有没有nginx" class="headerlink" title="2、查看有没有nginx"></a>2、查看有没有nginx<a class="article-anchor" href="#2、查看有没有nginx" aria-hidden="true"></a></h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">nginx</span><br></pre></td></tr></table></figure>
+<h2 id="3、查看nginx有没有安装" class="article-heading"><a href="#3、查看nginx有没有安装" class="headerlink" title="3、查看nginx有没有安装"></a>3、查看nginx有没有安装<a class="article-anchor" href="#3、查看nginx有没有安装" aria-hidden="true"></a></h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">yum install nginx</span><br></pre></td></tr></table></figure>
+<h2 id="4、通过ip试下能不能访问nginx" class="article-heading"><a href="#4、通过ip试下能不能访问nginx" class="headerlink" title="4、通过ip试下能不能访问nginx"></a>4、通过ip试下能不能访问nginx<a class="article-anchor" href="#4、通过ip试下能不能访问nginx" aria-hidden="true"></a></h2><h2 id="5、检查nginx配置是否正确" class="article-heading"><a href="#5、检查nginx配置是否正确" class="headerlink" title="5、检查nginx配置是否正确"></a>5、检查nginx配置是否正确<a class="article-anchor" href="#5、检查nginx配置是否正确" aria-hidden="true"></a></h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">nginx -t</span><br></pre></td></tr></table></figure>
+<h2 id="6、去目录-etc-nginx-conf-d" class="article-heading"><a href="#6、去目录-etc-nginx-conf-d" class="headerlink" title="6、去目录 /etc/nginx/conf.d"></a>6、去目录 /etc/nginx/conf.d<a class="article-anchor" href="#6、去目录-etc-nginx-conf-d" aria-hidden="true"></a></h2><p>如果目录内为空，这创建web.conf</p>
+<p>配置wen.conf</p>
+<h2 id="7、配置好后，检查配置是否正确" class="article-heading"><a href="#7、配置好后，检查配置是否正确" class="headerlink" title="7、配置好后，检查配置是否正确"></a>7、配置好后，检查配置是否正确<a class="article-anchor" href="#7、配置好后，检查配置是否正确" aria-hidden="true"></a></h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">nginx -t</span><br></pre></td></tr></table></figure>
+<h2 id="8、重启nginx" class="article-heading"><a href="#8、重启nginx" class="headerlink" title="8、重启nginx"></a>8、重启nginx<a class="article-anchor" href="#8、重启nginx" aria-hidden="true"></a></h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">nginx -s reload</span><br></pre></td></tr></table></figure>
+<p>再试试能否访问</p>
+
+              </div>
+              <footer class="article-footer">
+                <time class="article-footer-updated" datetime="2018-01-19T08:20:07.000Z" itemprop="dateModified">上次更新：2018-01-19</time>
+                
+              </footer>
+              
+
+<script>
+  var disqus_shortname = 'hexojs';
+  var disqus_url = 'https://hexo.io/zh-cn/nginx/index.html';
+  var disqus_title = "Nginx更改配置教程";
+  var disqus_config = function(){
+    this.language = 'zh';
+  };
+  (function(){
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = 'https://go.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+            </div>
+          </div>
+          <aside id="article-toc" role="navigation">
+            <div id="article-toc-inner">
+              <strong class="sidebar-title">目录</strong>
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1、远程连接ssh"><span class="toc-text">1、远程连接ssh</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2、查看有没有nginx"><span class="toc-text">2、查看有没有nginx</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3、查看nginx有没有安装"><span class="toc-text">3、查看nginx有没有安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4、通过ip试下能不能访问nginx"><span class="toc-text">4、通过ip试下能不能访问nginx</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5、检查nginx配置是否正确"><span class="toc-text">5、检查nginx配置是否正确</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6、去目录-etc-nginx-conf-d"><span class="toc-text">6、去目录 /etc/nginx/conf.d</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7、配置好后，检查配置是否正确"><span class="toc-text">7、配置好后，检查配置是否正确</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8、重启nginx"><span class="toc-text">8、重启nginx</span></a></li></ol>
+              <a href="#" id="article-toc-top">回到顶部</a>
+            </div>
+          </aside>
+        </div>
+      </article>
+      <aside id="sidebar" role="navigation">
+  <div class="inner">
+    <strong class="sidebar-title">Nginx更改配置教程</strong><a href="index.html" class="sidebar-link current">基础</a>
+  </div>
+</aside>
+    </div>
+  </div>
+</div>
+
+    <footer id="footer" class="wrapper">
+  <div class="inner">
+    <div id="footer-copyright">
+      &copy; 2018 <a href="https://github.com/wulisensen/MyBlog" target="_blank">https://github.com/wulisensen/MyBlog</a><br>
+     如果你有任何问题，可以给我发邮件 wuguangsenwow@163.com
+    </div>
+  </div>
+</footer>
+
+  </div>
+  <div id="mobile-nav-dimmer"></div>
+  <nav id="mobile-nav">
+  <div id="mobile-nav-inner">
+    <ul id="mobile-nav-list">
+      <a href="/javascript/" class="mobile-nav-link">JavaScript</a><a href="/css/" class="mobile-nav-link">CSS</a><a href="/python/" class="mobile-nav-link">Python</a><a href="/redis/" class="mobile-nav-link">Redis</a><a href="/mysql/" class="mobile-nav-link">MySQL</a><a href="/mongodb/" class="mobile-nav-link">MongoDB</a><a href="/linux/" class="mobile-nav-link">Linux</a><a href="/nginx/" class="mobile-nav-link">Nginx</a><a href="/git/" class="mobile-nav-link">Git</a>
+      <li class="mobile-nav-item">
+        <a href="https://github.com/hexojs/hexo" class="mobile-nav-link" rel="external" target="_blank">GitHub</a>
+      </li>
+    </ul>
+    
+      <strong class="mobile-nav-title">Nginx更改配置教程</strong><a href="index.html" class="mobile-nav-link current">基础</a>
+    
+  </div>
+  <div id="mobile-lang-select-wrap">
+    <span id="mobile-lang-select-label"><i class="fa fa-globe"></i><span>简体中文</span></span>
+    <select id="mobile-lang-select" data-canonical="">
+      
+        <option value="en">English</option>
+      
+        <option value="zh-tw">正體中文</option>
+      
+        <option value="zh-cn" selected>简体中文</option>
+      
+        <option value="ru">Русский</option>
+      
+        <option value="ko">한국어</option>
+      
+        <option value="pt-br">Português (Brasil)</option>
+      
+    </select>
+  </div>
+</nav>
+  <!-- Scripts -->
+<!-- build:js build/js/main.js -->
+<script src="/js/lang_select.js"></script>
+<script src="http://p2.ifengimg.com/a/2017/1229/toc.js"></script>
+<script src="http://p2.ifengimg.com/a/2017/1229/mobile_nav.js"></script>
+<!-- endbuild -->
+
+<!-- Algolia -->
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script>
+<script type="text/javascript">
+document.getElementById('search-input-wrap').classList.add('on');
+docsearch({
+  apiKey: 'cdea7d4e47d84f6145b77e7f68689f35',
+  indexName: 'hexo_zh-cn',
+  inputSelector: '#search-input'
+});
+</script>
+
+
+</body>
+</html>

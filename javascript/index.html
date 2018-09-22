@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8">
+  <title>简介 | WuLiSenSen</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>
+    if (window.location.pathname == '/') {
+      window.location.href = '/javascript/';
+    }
+  </script>
+  <!-- Canonical links -->
+  <link rel="canonical" href="https://hexo.io/zh-cn/javascript/index.html">
+  <!-- Alternative links -->
+  
+    
+      <link rel="alternative" hreflang="en" href="https://hexo.io/javascript/index.html">
+    
+      <link rel="alternative" hreflang="zh-tw" href="https://hexo.io/zh-tw/javascript/index.html">
+    
+      <link rel="alternative" hreflang="zh-cn" href="https://hexo.io/zh-cn/javascript/index.html">
+    
+      <link rel="alternative" hreflang="ru" href="https://hexo.io/ru/javascript/index.html">
+    
+      <link rel="alternative" hreflang="ko" href="https://hexo.io/ko/javascript/index.html">
+    
+      <link rel="alternative" hreflang="pt-br" href="https://hexo.io/pt-br/javascript/index.html">
+    
+  
+  <!-- Icon -->
+  <link rel="apple-touch-icon" sizes="57x57" href="/icon/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/icon/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/icon/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/icon/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/icon/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/icon/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/icon/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/icon/apple-touch-icon-152x152.png">
+  <link rel="icon" type="image/png" href="/icon/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/icon/favicon-160x160.png" sizes="160x160">
+  <link rel="icon" type="image/png" href="/icon/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/icon/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/icon/favicon-32x32.png" sizes="32x32">
+  <meta name="msapplication-TileColor" content="#2f83cd">
+  <meta name="msapplication-TileImage" content="/icon/mstile-144x144.png">
+  <!-- CSS -->
+  <link href="http://p0.ifengimg.com/a/2018/0118/navy.css" rel="stylesheet" type="text/css">
+  <!-- <link href="//fonts.lug.ustc.edu.cn/css?family=Lato:300,400,700" rel="stylesheet" type="text/css"> -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
+  <style>
+  .article-content{ min-height: 500px; }
+  </style>
+  <!-- RSS -->
+  <link rel="alternate" href="/atom.xml" title="WuLiSenSen">
+  <!-- Open Graph -->
+  <meta name="description" content="1、变量的 定义  let与consta、为什么不用var：var没有块级作用域，定义后在当前闭包中都可以访问，如果变量名重复，就会覆盖前面定义的变量，并且也有可能被其他人更改。  var在for循环标记变量共享，一般在循环中使用的i会被共享，其本质上也是由于没有块级作用域造成的，由于情况比较多见和特殊，单独算一个问题。 b、为什么用let：let定义的变量有作用域： 在自己的作用域中不会被其他人">
+<meta property="og:type" content="website">
+<meta property="og:title" content="简介">
+<meta property="og:url" content="https://hexo.io/zh-cn/javascript/index.html">
+<meta property="og:site_name" content="WuLiSenSen">
+<meta property="og:description" content="1、变量的 定义  let与consta、为什么不用var：var没有块级作用域，定义后在当前闭包中都可以访问，如果变量名重复，就会覆盖前面定义的变量，并且也有可能被其他人更改。  var在for循环标记变量共享，一般在循环中使用的i会被共享，其本质上也是由于没有块级作用域造成的，由于情况比较多见和特殊，单独算一个问题。 b、为什么用let：let定义的变量有作用域： 在自己的作用域中不会被其他人">
+<meta property="og:locale" content="zh-cn">
+<meta property="og:updated_time" content="2018-01-17T01:34:04.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="简介">
+<meta name="twitter:description" content="1、变量的 定义  let与consta、为什么不用var：var没有块级作用域，定义后在当前闭包中都可以访问，如果变量名重复，就会覆盖前面定义的变量，并且也有可能被其他人更改。  var在for循环标记变量共享，一般在循环中使用的i会被共享，其本质上也是由于没有块级作用域造成的，由于情况比较多见和特殊，单独算一个问题。 b、为什么用let：let定义的变量有作用域： 在自己的作用域中不会被其他人">
+<meta name="twitter:site" content="hexojs">
+<meta property="fb:admins" content="100000247608790">
+  <!-- Google Analytics -->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-48498357-3', 'auto');
+  ga('send', 'pageview');
+</script>
+
+</head>
+
+<body>
+  <div id="container">
+    <header id="header" class="wrapper">
+  <div id="header-inner" class="inner">
+    <h1 id="logo-wrap">
+      <a href="/zh-cn/" id="logo"></a>
+    </h1>
+    <nav id="main-nav">
+      <a href="/javascript/" class="main-nav-link">JavaScript</a><a href="/css/" class="main-nav-link">CSS</a><a href="/python/" class="main-nav-link">Python</a><a href="/redis/" class="main-nav-link">Redis</a><a href="/mysql/" class="main-nav-link">MySQL</a><a href="/mongodb/" class="main-nav-link">MongoDB</a><a href="/linux/" class="main-nav-link">Linux</a><a href="/nginx/" class="main-nav-link">Nginx</a><a href="/git/" class="main-nav-link">Git</a>
+    </nav>
+    <a id="mobile-nav-toggle">
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+    </a>
+  </div>
+</header>
+
+    <div id="content-wrap">
+  <div id="content" class="wrapper">
+    <div id="content-inner">
+      <article class="article-container" itemscope itemtype="http://schema.org/Article">
+        <div class="article-inner">
+          <div class="article">
+            <div class="inner">
+              <header class="article-header">
+                <h1 class="article-title" itemprop="name">简介</h1>
+                <a href="https://github.com/hexojs/site/edit/master/source/zh-cn/javascript/index.md" class="article-edit-link" title="改进本文"><i class="fa fa-pencil"></i></a>
+              </header>
+              <div class="article-content" itemprop="articleBody">
+                <h2 id="1、变量的-定义-let与const" class="article-heading"><a href="#1、变量的-定义-let与const" class="headerlink" title="1、变量的 定义  let与const"></a>1、变量的 定义  let与const<a class="article-anchor" href="#1、变量的-定义-let与const" aria-hidden="true"></a></h2><h3 id="a、为什么不用var：" class="article-heading"><a href="#a、为什么不用var：" class="headerlink" title="a、为什么不用var："></a>a、为什么不用var：<a class="article-anchor" href="#a、为什么不用var：" aria-hidden="true"></a></h3><p><code>var</code>没有块级作用域，定义后在当前闭包中都可以访问，如果变量名重复，就会覆盖前面定义的变量，并且也有可能被其他人更改。</p>
+<p> <code>var</code>在<code>for</code>循环标记变量共享，一般在循环中使用的<code>i</code>会被共享，其本质上也是由于没有块级作用域造成的，由于情况比较多见和特殊，单独算一个问题。</p>
+<h3 id="b、为什么用let：" class="article-heading"><a href="#b、为什么用let：" class="headerlink" title="b、为什么用let："></a>b、为什么用let：<a class="article-anchor" href="#b、为什么用let：" aria-hidden="true"></a></h3><p>let定义的变量有作用域： 在自己的作用域中不会被其他人访问</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="keyword">let</span> s = <span class="string">"s"</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(s);   ---&gt; <span class="literal">undefined</span></span><br><span class="line">- 不会影响<span class="built_in">window</span></span><br><span class="line"><span class="keyword">let</span> win = <span class="string">"win"</span>;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">window</span>.win);   ---&gt;<span class="literal">undefined</span></span><br><span class="line">-嵌套循环不会相互影响</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="number">3</span>; i++) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"out"</span>, i);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="number">2</span>; i++) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"in"</span>, i);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">""</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="c、为什么用const" class="article-heading"><a href="#c、为什么用const" class="headerlink" title="c、为什么用const"></a>c、为什么用const<a class="article-anchor" href="#c、为什么用const" aria-hidden="true"></a></h3><p><code>const</code>是静态变量，定以后不允许再被修改或者重新定义。<br>在严格模式下，重新定义或者修改静态变量会报错。<br>不同的块级作用域下，可以定义相同名字的静态变量。<br><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> MAX_CNT = <span class="number">10</span>;</span><br><span class="line">MAX_CNT = <span class="number">11</span>;    ---&gt;报错</span><br></pre></td></tr></table></figure></p>
+<h2 id="2、解构赋值" class="article-heading"><a href="#2、解构赋值" class="headerlink" title="2、解构赋值"></a>2、解构赋值<a class="article-anchor" href="#2、解构赋值" aria-hidden="true"></a></h2><h3 id="a、解构赋值：-let-a-b-c-“11”-”22”-”33”" class="article-heading"><a href="#a、解构赋值：-let-a-b-c-“11”-”22”-”33”" class="headerlink" title="a、解构赋值：   let [a,b,c] = [“11”,”22”,”33”];"></a>a、解构赋值：   let [a,b,c] = [“11”,”22”,”33”];<a class="article-anchor" href="#a、解构赋值：-let-a-b-c-“11”-”22”-”33”" aria-hidden="true"></a></h3><h3 id="b、省略赋值：-let-x-1-2-3" class="article-heading"><a href="#b、省略赋值：-let-x-1-2-3" class="headerlink" title="b、省略赋值：   let [, , x] = [1, 2, 3];"></a>b、省略赋值：   let [, , x] = [1, 2, 3];<a class="article-anchor" href="#b、省略赋值：-let-x-1-2-3" aria-hidden="true"></a></h3><h3 id="c、不行参数：-let-first-…other-1-2-3-4-5" class="article-heading"><a href="#c、不行参数：-let-first-…other-1-2-3-4-5" class="headerlink" title="c、不行参数：   let [first, , …other] = [1, 2, 3, 4, 5];"></a>c、不行参数：   let [first, , …other] = [1, 2, 3, 4, 5];<a class="article-anchor" href="#c、不行参数：-let-first-…other-1-2-3-4-5" aria-hidden="true"></a></h3><h3 id="d、对写的解构赋值：" class="article-heading"><a href="#d、对写的解构赋值：" class="headerlink" title="d、对写的解构赋值："></a>d、对写的解构赋值：<a class="article-anchor" href="#d、对写的解构赋值：" aria-hidden="true"></a></h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">    <span class="keyword">let</span> obj = &#123;</span><br><span class="line">    param1: <span class="string">"p1"</span>,</span><br><span class="line">    param2: <span class="string">"p2"</span></span><br><span class="line">    &#125;;</span><br><span class="line"><span class="keyword">let</span> &#123;param1, param2&#125; = obj</span><br><span class="line"><span class="built_in">console</span>.log(param1, param2);</span><br><span class="line"><span class="comment">// 相当于</span></span><br><span class="line"><span class="keyword">let</span> param1 = obj.param1;</span><br><span class="line"><span class="keyword">let</span> param2 = obj.param2;</span><br><span class="line"><span class="comment">// 但是如果我非想叫p1和p2呢</span></span><br><span class="line"><span class="keyword">let</span> &#123;<span class="attr">param1</span>: p1, <span class="attr">param2</span>: p2&#125; = obj;</span><br><span class="line"><span class="built_in">console</span>.log(p1, p2);</span><br></pre></td></tr></table></figure>
+<h3 id="e、默认值" class="article-heading"><a href="#e、默认值" class="headerlink" title="e、默认值"></a>e、默认值<a class="article-anchor" href="#e、默认值" aria-hidden="true"></a></h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> [a = <span class="string">"a"</span>, b = <span class="string">"b"</span>, c = <span class="string">"c"</span>] = [<span class="number">1</span>, , <span class="number">3</span>];</span><br><span class="line"><span class="built_in">console</span>.log(a, b, c);</span><br></pre></td></tr></table></figure>
+<h2 id="3、函数" class="article-heading"><a href="#3、函数" class="headerlink" title="3、函数"></a>3、函数<a class="article-anchor" href="#3、函数" aria-hidden="true"></a></h2><h3 id="a、默认参数" class="article-heading"><a href="#a、默认参数" class="headerlink" title="a、默认参数"></a>a、默认参数<a class="article-anchor" href="#a、默认参数" aria-hidden="true"></a></h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">calc</span> (<span class="params">x = <span class="number">0</span>, y = <span class="number">0</span></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(x, y);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="b、默认参数作用域" class="article-heading"><a href="#b、默认参数作用域" class="headerlink" title="b、默认参数作用域"></a>b、默认参数作用域<a class="article-anchor" href="#b、默认参数作用域" aria-hidden="true"></a></h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> x = <span class="number">2</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span> (<span class="params">x, y = x</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(x, y);</span><br><span class="line">&#125;</span><br><span class="line">test(<span class="number">1</span>)；</span><br></pre></td></tr></table></figure>
+<h3 id="c、rest参数-…（将非数组转换成-数组）" class="article-heading"><a href="#c、rest参数-…（将非数组转换成-数组）" class="headerlink" title="c、rest参数 …（将非数组转换成 数组）"></a>c、rest参数 …（将非数组转换成 数组）<a class="article-anchor" href="#c、rest参数-…（将非数组转换成-数组）" aria-hidden="true"></a></h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span> (<span class="params">...value</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> sum = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> val <span class="keyword">of</span> value) &#123;</span><br><span class="line">        sum += val;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(add(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>));</span><br></pre></td></tr></table></figure>
+<h3 id="d、spread参数-…（将数组转换成非数组）" class="article-heading"><a href="#d、spread参数-…（将数组转换成非数组）" class="headerlink" title="d、spread参数 …（将数组转换成非数组）"></a>d、spread参数 …（将数组转换成非数组）<a class="article-anchor" href="#d、spread参数-…（将数组转换成非数组）" aria-hidden="true"></a></h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> nums = [<span class="number">1</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>];</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">calc</span> (<span class="params">x, y</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> sum = x + y;</span><br><span class="line">    <span class="built_in">console</span>.log(sum);</span><br><span class="line">&#125;</span><br><span class="line">calc(...nums);</span><br></pre></td></tr></table></figure>
+<h3 id="e、箭头函数" class="article-heading"><a href="#e、箭头函数" class="headerlink" title="e、箭头函数"></a>e、箭头函数<a class="article-anchor" href="#e、箭头函数" aria-hidden="true"></a></h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 箭头函数在语法上是匿名函数的一种简写方式</span></span><br><span class="line"><span class="keyword">let</span> a = <span class="number">123</span>;</span><br><span class="line"><span class="keyword">let</span> func1 = <span class="function"><span class="params">a</span> =&gt;</span> a;</span><br><span class="line"><span class="keyword">let</span> func2 = <span class="function"><span class="keyword">function</span> (<span class="params">a</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// 多个参数 还需要计算 就要用代码块包裹起来</span></span><br><span class="line"><span class="keyword">let</span> func3 = <span class="function">(<span class="params">a, b</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> res = a + b;</span><br><span class="line">    res = res * <span class="number">5</span>;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="f、箭头函数简单应用" class="article-heading"><a href="#f、箭头函数简单应用" class="headerlink" title="f、箭头函数简单应用"></a>f、箭头函数简单应用<a class="article-anchor" href="#f、箭头函数简单应用" aria-hidden="true"></a></h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 处理数组中的数据</span></span><br><span class="line"><span class="keyword">let</span> arr = [<span class="number">1</span>, <span class="number">5</span>, <span class="number">6</span>];</span><br><span class="line">arr = arr.map(<span class="function"><span class="params">value</span> =&gt;</span> value + <span class="number">1</span>);</span><br><span class="line">arr = arr.map(<span class="function"><span class="keyword">function</span> (<span class="params">value</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> value + <span class="number">1</span>;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// 找到数组中的数据</span></span><br><span class="line"><span class="keyword">let</span> arr2 = [<span class="number">8</span>, <span class="number">6</span>, <span class="number">5</span>];</span><br><span class="line"><span class="keyword">let</span> findItem = arr2.findIndex(<span class="function"><span class="params">value</span> =&gt;</span> value === <span class="number">6</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="g、箭头函数this关键字不变" class="article-heading"><a href="#g、箭头函数this关键字不变" class="headerlink" title="g、箭头函数this关键字不变"></a>g、箭头函数this关键字不变<a class="article-anchor" href="#g、箭头函数this关键字不变" aria-hidden="true"></a></h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">window</span>.a = <span class="string">'a'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">    a: <span class="string">'obj_a'</span>,</span><br><span class="line">    func: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        setTimeout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="keyword">this</span>, <span class="keyword">this</span>.a);</span><br><span class="line">        &#125;, <span class="number">1000</span>);</span><br><span class="line">    &#125;,</span><br><span class="line">    func2: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="keyword">this</span>, <span class="keyword">this</span>.a);</span><br><span class="line">        &#125;, <span class="number">1000</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">obj.func();</span><br><span class="line">obj.func2();</span><br></pre></td></tr></table></figure>
+<h2 id="4、Symbol" class="article-heading"><a href="#4、Symbol" class="headerlink" title="4、Symbol"></a>4、Symbol<a class="article-anchor" href="#4、Symbol" aria-hidden="true"></a></h2><h3 id="a、Symbol基本使用" class="article-heading"><a href="#a、Symbol基本使用" class="headerlink" title="a、Symbol基本使用"></a>a、Symbol基本使用<a class="article-anchor" href="#a、Symbol基本使用" aria-hidden="true"></a></h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"> <span class="comment">// Symbol 接受的参数是对 Symbol 的描述</span></span><br><span class="line"></span><br><span class="line"> <span class="keyword">let</span> s = <span class="built_in">Symbol</span>();</span><br><span class="line"> <span class="built_in">console</span>.log(<span class="keyword">typeof</span> s);</span><br><span class="line"></span><br><span class="line"> <span class="keyword">let</span> syb = <span class="built_in">Symbol</span>(<span class="string">'syb'</span>);</span><br><span class="line"> <span class="keyword">let</span> syb2 = <span class="built_in">Symbol</span>(<span class="string">'syb'</span>);</span><br><span class="line"> <span class="built_in">console</span>.log(syb, syb === <span class="string">'Symbol(syb)'</span>, syb.toString() === <span class="string">'Symbol(syb)'</span>, syb == syb2, syb.toString() == syb2.toString());</span><br><span class="line"></span><br><span class="line"> <span class="comment">// 不可以参与运算</span></span><br><span class="line"> <span class="keyword">let</span> str = <span class="string">'str'</span>;</span><br><span class="line"> str += syb.toString();</span><br><span class="line"> <span class="built_in">console</span>.log(str);</span><br><span class="line"></span><br><span class="line"> <span class="comment">// 强制类型转换</span></span><br><span class="line"> <span class="keyword">let</span> sybRe = <span class="built_in">Symbol</span>(<span class="number">13</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">String</span>(sybRe));</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Boolean</span>(sybRe));</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Number</span>(sybRe));</span><br></pre></td></tr></table></figure>
+<h3 id="b、Symbol作为对象属性名" class="article-heading"><a href="#b、Symbol作为对象属性名" class="headerlink" title="b、Symbol作为对象属性名"></a>b、Symbol作为对象属性名<a class="article-anchor" href="#b、Symbol作为对象属性名" aria-hidden="true"></a></h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> syb = <span class="built_in">Symbol</span>(<span class="string">'s'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> obj = &#123;&#125;;</span><br><span class="line">obj[syb] = <span class="string">'syb value'</span>;</span><br><span class="line"><span class="comment">// .运算符 和 []运算符后面都是字符串, 但是我们的属性名是一个Symbol, 是一种极其特殊的字符串</span></span><br><span class="line"><span class="built_in">console</span>.log(obj, obj[syb], obj[<span class="string">'Symbol(s)'</span>], obj.syb);</span><br></pre></td></tr></table></figure>
+
+              </div>
+              <footer class="article-footer">
+                <time class="article-footer-updated" datetime="2018-01-17T01:34:04.000Z" itemprop="dateModified">上次更新：2018-01-17</time>
+                
+              </footer>
+              
+
+<script>
+  var disqus_shortname = 'hexojs';
+  var disqus_url = 'https://hexo.io/zh-cn/javascript/index.html';
+  var disqus_title = "简介";
+  var disqus_config = function(){
+    this.language = 'zh';
+  };
+  (function(){
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = 'https://go.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+            </div>
+          </div>
+          <aside id="article-toc" role="navigation">
+            <div id="article-toc-inner">
+              <strong class="sidebar-title">目录</strong>
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1、变量的-定义-let与const"><span class="toc-text">1、变量的 定义  let与const</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#a、为什么不用var："><span class="toc-text">a、为什么不用var：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#b、为什么用let："><span class="toc-text">b、为什么用let：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#c、为什么用const"><span class="toc-text">c、为什么用const</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2、解构赋值"><span class="toc-text">2、解构赋值</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#a、解构赋值：-let-a-b-c-“11”-”22”-”33”"><span class="toc-text">a、解构赋值：   let [a,b,c] = [“11”,”22”,”33”];</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#b、省略赋值：-let-x-1-2-3"><span class="toc-text">b、省略赋值：   let [, , x] = [1, 2, 3];</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#c、不行参数：-let-first-…other-1-2-3-4-5"><span class="toc-text">c、不行参数：   let [first, , …other] = [1, 2, 3, 4, 5];</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#d、对写的解构赋值："><span class="toc-text">d、对写的解构赋值：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#e、默认值"><span class="toc-text">e、默认值</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3、函数"><span class="toc-text">3、函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#a、默认参数"><span class="toc-text">a、默认参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#b、默认参数作用域"><span class="toc-text">b、默认参数作用域</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#c、rest参数-…（将非数组转换成-数组）"><span class="toc-text">c、rest参数 …（将非数组转换成 数组）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#d、spread参数-…（将数组转换成非数组）"><span class="toc-text">d、spread参数 …（将数组转换成非数组）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#e、箭头函数"><span class="toc-text">e、箭头函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#f、箭头函数简单应用"><span class="toc-text">f、箭头函数简单应用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#g、箭头函数this关键字不变"><span class="toc-text">g、箭头函数this关键字不变</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4、Symbol"><span class="toc-text">4、Symbol</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#a、Symbol基本使用"><span class="toc-text">a、Symbol基本使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#b、Symbol作为对象属性名"><span class="toc-text">b、Symbol作为对象属性名</span></a></li></ol></li></ol>
+              <a href="#" id="article-toc-top">回到顶部</a>
+            </div>
+          </aside>
+        </div>
+      </article>
+      <aside id="sidebar" role="navigation">
+  <div class="inner">
+    <strong class="sidebar-title">ES6</strong><a href="index.html" class="sidebar-link current">简介</a>
+  </div>
+</aside>
+    </div>
+  </div>
+</div>
+
+    <footer id="footer" class="wrapper">
+  <div class="inner">
+    <div id="footer-copyright">
+      &copy; 2018 <a href="https://github.com/wulisensen/MyBlog" target="_blank">https://github.com/wulisensen/MyBlog</a><br>
+     如果你有任何问题，可以给我发邮件 wuguangsenwow@163.com
+    </div>
+  </div>
+</footer>
+
+  </div>
+  <div id="mobile-nav-dimmer"></div>
+  <nav id="mobile-nav">
+  <div id="mobile-nav-inner">
+    <ul id="mobile-nav-list">
+      <a href="/javascript/" class="mobile-nav-link">JavaScript</a><a href="/css/" class="mobile-nav-link">CSS</a><a href="/python/" class="mobile-nav-link">Python</a><a href="/redis/" class="mobile-nav-link">Redis</a><a href="/mysql/" class="mobile-nav-link">MySQL</a><a href="/mongodb/" class="mobile-nav-link">MongoDB</a><a href="/linux/" class="mobile-nav-link">Linux</a><a href="/nginx/" class="mobile-nav-link">Nginx</a><a href="/git/" class="mobile-nav-link">Git</a>
+      <li class="mobile-nav-item">
+        <a href="https://github.com/hexojs/hexo" class="mobile-nav-link" rel="external" target="_blank">GitHub</a>
+      </li>
+    </ul>
+    
+      <strong class="mobile-nav-title">ES6</strong><a href="index.html" class="mobile-nav-link current">简介</a>
+    
+  </div>
+  <div id="mobile-lang-select-wrap">
+    <span id="mobile-lang-select-label"><i class="fa fa-globe"></i><span>简体中文</span></span>
+    <select id="mobile-lang-select" data-canonical="">
+      
+        <option value="en">English</option>
+      
+        <option value="zh-tw">正體中文</option>
+      
+        <option value="zh-cn" selected>简体中文</option>
+      
+        <option value="ru">Русский</option>
+      
+        <option value="ko">한국어</option>
+      
+        <option value="pt-br">Português (Brasil)</option>
+      
+    </select>
+  </div>
+</nav>
+  <!-- Scripts -->
+<!-- build:js build/js/main.js -->
+<script src="/js/lang_select.js"></script>
+<script src="http://p2.ifengimg.com/a/2017/1229/toc.js"></script>
+<script src="http://p2.ifengimg.com/a/2017/1229/mobile_nav.js"></script>
+<!-- endbuild -->
+
+<!-- Algolia -->
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script>
+<script type="text/javascript">
+document.getElementById('search-input-wrap').classList.add('on');
+docsearch({
+  apiKey: 'cdea7d4e47d84f6145b77e7f68689f35',
+  indexName: 'hexo_zh-cn',
+  inputSelector: '#search-input'
+});
+</script>
+
+
+</body>
+</html>
