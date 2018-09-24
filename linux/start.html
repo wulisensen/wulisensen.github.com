@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head prefix="og: http://ogp.me/ns#"><meta name="generator" content="Hexo 3.7.1">
+  <meta charset="utf-8">
+  <title>Docker5分钟搭建WordPress | WuLiSenSen的技术博客</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>
+    if (window.location.pathname == '/') {
+      window.location.href = '/javascript/';
+    }
+  </script>
+  <!-- Canonical links -->
+  <link rel="canonical" href="https://hexo.io/zh-cn/linux/start.html">
+  <!-- Alternative links -->
+  
+    
+      <link rel="alternative" hreflang="en" href="https://hexo.io/linux/start.html">
+    
+      <link rel="alternative" hreflang="zh-tw" href="https://hexo.io/zh-tw/linux/start.html">
+    
+      <link rel="alternative" hreflang="zh-cn" href="https://hexo.io/zh-cn/linux/start.html">
+    
+      <link rel="alternative" hreflang="ru" href="https://hexo.io/ru/linux/start.html">
+    
+      <link rel="alternative" hreflang="ko" href="https://hexo.io/ko/linux/start.html">
+    
+      <link rel="alternative" hreflang="pt-br" href="https://hexo.io/pt-br/linux/start.html">
+    
+  
+  <!-- Icon -->
+  <link rel="apple-touch-icon" sizes="57x57" href="/icon/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/icon/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/icon/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/icon/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/icon/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/icon/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/icon/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/icon/apple-touch-icon-152x152.png">
+  <link rel="icon" type="image/png" href="/icon/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/icon/favicon-160x160.png" sizes="160x160">
+  <link rel="icon" type="image/png" href="/icon/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/icon/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/icon/favicon-32x32.png" sizes="32x32">
+  <meta name="msapplication-TileColor" content="#2f83cd">
+  <meta name="msapplication-TileImage" content="/icon/mstile-144x144.png">
+  <!-- CSS -->
+  <link href="//p0.ifengimg.com/a/2018/0118/navy.css" rel="stylesheet" type="text/css">
+  <!-- <link href="//fonts.lug.ustc.edu.cn/css?family=Lato:300,400,700" rel="stylesheet" type="text/css"> -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
+  <style>
+  .article-content{ min-height: 500px; }
+  </style>
+  <!-- RSS -->
+  <link rel="alternate" href="/atom.xml" title="WuLiSenSen的技术博客">
+  <!-- Open Graph -->
+  <meta name="description" content="本文不是介绍Docker是什么概念的基础篇，如想了解Docker是什么概念的请自行谷歌（我也是看了好多介绍才开始手动做的:) 一、安装DockerMac:$ brew cask install docker CentOS:$ sudo yum update$ curl -fsSL https://get.docker.com -o get-docker.sh$ sudo sh get-docker">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Docker5分钟搭建WordPress">
+<meta property="og:url" content="https://hexo.io/zh-cn/linux/start.html">
+<meta property="og:site_name" content="WuLiSenSen的技术博客">
+<meta property="og:description" content="本文不是介绍Docker是什么概念的基础篇，如想了解Docker是什么概念的请自行谷歌（我也是看了好多介绍才开始手动做的:) 一、安装DockerMac:$ brew cask install docker CentOS:$ sudo yum update$ curl -fsSL https://get.docker.com -o get-docker.sh$ sudo sh get-docker">
+<meta property="og:locale" content="zh-cn">
+<meta property="og:updated_time" content="2018-09-24T17:59:41.331Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Docker5分钟搭建WordPress">
+<meta name="twitter:description" content="本文不是介绍Docker是什么概念的基础篇，如想了解Docker是什么概念的请自行谷歌（我也是看了好多介绍才开始手动做的:) 一、安装DockerMac:$ brew cask install docker CentOS:$ sudo yum update$ curl -fsSL https://get.docker.com -o get-docker.sh$ sudo sh get-docker">
+<meta name="twitter:site" content="hexojs">
+<meta property="fb:admins" content="100000247608790">
+  <!-- Google Analytics -->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-48498357-3', 'auto');
+  ga('send', 'pageview');
+</script>
+
+</head>
+
+<body>
+  <div id="container">
+    <header id="header" class="wrapper">
+  <div id="header-inner" class="inner">
+    <h1 id="logo-wrap">
+      <a href="/zh-cn/" id="logo"></a>
+    </h1>
+    <nav id="main-nav">
+      <a href="/javascript/" class="main-nav-link">JavaScript</a><a href="/css/" class="main-nav-link">CSS</a><a href="/python/" class="main-nav-link">Python</a><a href="/redis/" class="main-nav-link">Redis</a><a href="/mysql/" class="main-nav-link">MySQL</a><a href="/mongodb/" class="main-nav-link">MongoDB</a><a href="/linux/" class="main-nav-link">Linux</a><a href="/nginx/" class="main-nav-link">Nginx</a><a href="/git/" class="main-nav-link">Git</a>
+    </nav>
+    <a id="mobile-nav-toggle">
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+    </a>
+  </div>
+</header>
+
+    <div id="content-wrap">
+  <div id="content" class="wrapper">
+    <div id="content-inner">
+      <article class="article-container" itemscope="" itemtype="http://schema.org/Article">
+        <div class="article-inner">
+          <div class="article">
+            <div class="inner">
+              <header class="article-header">
+                <h1 class="article-title" itemprop="name">Docker5分钟搭建WordPress</h1>
+                <a href="https://github.com/hexojs/site/edit/master/source/zh-cn/linux/start.md" class="article-edit-link" title="改进本文"><i class="fa fa-pencil"></i></a>
+              </header>
+              <div class="article-content" itemprop="articleBody">
+                <p>本文不是介绍Docker是什么概念的基础篇，如想了解Docker是什么概念的请自行谷歌（我也是看了好多介绍才开始手动做的:)</p>
+<h2 id="一、安装Docker" class="article-heading"><a href="#一、安装Docker" class="headerlink" title="一、安装Docker"></a>一、安装Docker<a class="article-anchor" href="#一、安装Docker" aria-hidden="true"></a></h2><h4 id="Mac" class="article-heading"><a href="#Mac" class="headerlink" title="Mac:"></a>Mac:<a class="article-anchor" href="#Mac" aria-hidden="true"></a></h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ brew cask install docker</span><br></pre></td></tr></table></figure>
+<h4 id="CentOS" class="article-heading"><a href="#CentOS" class="headerlink" title="CentOS:"></a>CentOS:<a class="article-anchor" href="#CentOS" aria-hidden="true"></a></h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sudo yum update</span><br><span class="line">$ curl -fsSL https://get.docker.com -o get-docker.sh</span><br><span class="line">$ sudo sh get-docker.sh</span><br><span class="line">$ sudo systemctl start docker</span><br></pre></td></tr></table></figure>
+<p>linux稍微麻烦些，反正我是没这样装上，我最后使用pip装上的:)</p>
+<h4 id="验证安装成功" class="article-heading"><a href="#验证安装成功" class="headerlink" title="验证安装成功"></a>验证安装成功<a class="article-anchor" href="#验证安装成功" aria-hidden="true"></a></h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ docker run hello-world</span><br></pre></td></tr></table></figure>
+<p>如果本地没有相应的Image，就回去pull，后面如果看到<code>Hello from Docker!</code>字样就说明安装成功了</p>
+<h2 id="二、为Docker镜像下载加速" class="article-heading"><a href="#二、为Docker镜像下载加速" class="headerlink" title="二、为Docker镜像下载加速"></a>二、为Docker镜像下载加速<a class="article-anchor" href="#二、为Docker镜像下载加速" aria-hidden="true"></a></h2><p>由于国内网络连接Docker仓库非常慢，所以配置国内镜像加速还是非常必要的，这里没啥坑，自行谷歌吧:)</p>
+<h2 id="三、安装-Docker-Compose" class="article-heading"><a href="#三、安装-Docker-Compose" class="headerlink" title="三、安装 Docker Compose"></a>三、安装 Docker Compose<a class="article-anchor" href="#三、安装-Docker-Compose" aria-hidden="true"></a></h2><h4 id="1、简介" class="article-heading"><a href="#1、简介" class="headerlink" title="1、简介"></a>1、简介<a class="article-anchor" href="#1、简介" aria-hidden="true"></a></h4><p>看到这里是不要打人了，尼玛还啥也没干呢就让老子装了这么多东西。</p>
+<p>各位大爷请先将你们的刀收好，听我娓娓道来。</p>
+<p>一般来说我们的起个demo就一个实例就够了，但是一般来说，web应用会有2个或以上个服务，像WordPress这种简单的也有web+db2个，还别说这其中还要相互依赖关系，比如先起DB,再起web。</p>
+<p>Compose 是 Docker 公司推出的一个工具软件，可以管理多个 Docker 容器组成一个应用。你需要定义一个 YAML 格式的配置文件<code>docker-compose.yml</code>，写好多个容器之间的调用关系。然后，只要一个命令，就能同时启动/关闭这些容器。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 启动所有服务</span></span><br><span class="line">$ docker-compose up</span><br><span class="line"><span class="comment"># 关闭所有服务</span></span><br><span class="line">$ docker-compose stop</span><br></pre></td></tr></table></figure>
+<h4 id="2、安装" class="article-heading"><a href="#2、安装" class="headerlink" title="2、安装"></a>2、安装<a class="article-anchor" href="#2、安装" aria-hidden="true"></a></h4><p>Mac 和 Windows 在安装 docker 的时候，会一起安装 docker compose。Linux 系统下的安装参考<a href="https://docs.docker.com/compose/install/#install-compose" target="_blank" rel="noopener">官方文档</a>。</p>
+<p>安装完成后，运行下面的命令。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ docker-compose --version</span><br></pre></td></tr></table></figure>
+<h4 id="3、开始创建" class="article-heading"><a href="#3、开始创建" class="headerlink" title="3、开始创建"></a>3、开始创建<a class="article-anchor" href="#3、开始创建" aria-hidden="true"></a></h4><p>找一空目录，创建文件<code>docker-compose.yml</code>,并写入：</p>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">'3.3'</span></span><br><span class="line"></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line"><span class="attr">   db:</span></span><br><span class="line"><span class="attr">     image:</span> <span class="attr">mysql:5.7</span></span><br><span class="line"><span class="attr">     volumes:</span></span><br><span class="line"><span class="attr">       - db_data:</span><span class="string">/var/lib/mysql</span></span><br><span class="line"><span class="attr">     restart:</span> <span class="string">always</span></span><br><span class="line"><span class="attr">     environment:</span></span><br><span class="line"><span class="attr">       MYSQL_ROOT_PASSWORD:</span> <span class="string">somewordpress</span></span><br><span class="line"><span class="attr">       MYSQL_DATABASE:</span> <span class="string">wordpress</span></span><br><span class="line"><span class="attr">       MYSQL_USER:</span> <span class="string">wordpress</span></span><br><span class="line"><span class="attr">       MYSQL_PASSWORD:</span> <span class="string">wordpress</span></span><br><span class="line"></span><br><span class="line"><span class="attr">   wordpress:</span></span><br><span class="line"><span class="attr">     depends_on:</span></span><br><span class="line"><span class="bullet">       -</span> <span class="string">db</span></span><br><span class="line"><span class="attr">     image:</span> <span class="attr">wordpress:latest</span></span><br><span class="line"><span class="attr">     ports:</span></span><br><span class="line"><span class="bullet">       -</span> <span class="string">"8000:80"</span></span><br><span class="line"><span class="attr">     restart:</span> <span class="string">always</span></span><br><span class="line"><span class="attr">     environment:</span></span><br><span class="line"><span class="attr">       WORDPRESS_DB_HOST:</span> <span class="attr">db:3306</span></span><br><span class="line"><span class="attr">       WORDPRESS_DB_USER:</span> <span class="string">wordpress</span></span><br><span class="line"><span class="attr">       WORDPRESS_DB_PASSWORD:</span> <span class="string">wordpress</span></span><br><span class="line"><span class="attr">volumes:</span></span><br><span class="line"><span class="attr">    db_data:</span></span><br></pre></td></tr></table></figure>
+<p>启动两个容器</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ docker-compose up</span><br></pre></td></tr></table></figure>
+<p>如果本机，浏览器试着访问下 <code>http://127.0.0.1:808</code>, 如果是外部服务器 将ip改成对应ip, 应该就能看到 WordPress 的安装界面。</p>
+<p>现在关闭两个容器。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ docker-compose stop</span><br></pre></td></tr></table></figure>
+<p>关闭以后，这两个容器文件还是存在的，写在里面的数据不会丢失。下次启动的时候，还可以复用。下面的命令可以把这两个容器文件删除（容器必须已经停止运行）。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ docker-compose rm</span><br></pre></td></tr></table></figure>
+<p>如果问题，查看<a href="https://docs.docker.com/compose/wordpress/" target="_blank" rel="noopener">官方文档</a></p>
+<p>如果不想通过IP+port访问服务的话，可以申请个域名，nginx做下配置，可以看我nginx里那篇文章。</p>
+<h2 id="四、参考链接" class="article-heading"><a href="#四、参考链接" class="headerlink" title="四、参考链接"></a>四、参考链接<a class="article-anchor" href="#四、参考链接" aria-hidden="true"></a></h2><p>1、<a href="http://www.ruanyifeng.com/blog/2018/02/docker-wordpress-tutorial.html" target="_blank" rel="noopener">http://www.ruanyifeng.com/blog/2018/02/docker-wordpress-tutorial.html</a> by ruanyifeng</p>
+
+              </div>
+              <footer class="article-footer">
+                <time class="article-footer-updated" datetime="2018-09-24T17:59:41.331Z" itemprop="dateModified">上次更新：2018-09-24</time>
+                <a href="index.html" class="article-footer-prev" title="基础"><i class="fa fa-chevron-left"></i><span>上一页</span></a>
+              </footer>
+              
+
+<script>
+  var disqus_shortname = 'hexojs';
+  var disqus_url = 'https://hexo.io/zh-cn/linux/start.html';
+  var disqus_title = "Docker5分钟搭建WordPress";
+  var disqus_config = function(){
+    this.language = 'zh';
+  };
+  (function(){
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = 'https://go.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+            </div>
+          </div>
+          <aside id="article-toc" role="navigation">
+            <div id="article-toc-inner">
+              <strong class="sidebar-title">目录</strong>
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一、安装Docker"><span class="toc-text">一、安装Docker</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Mac"><span class="toc-text">Mac:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#CentOS"><span class="toc-text">CentOS:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#验证安装成功"><span class="toc-text">验证安装成功</span></a></li></ol></li></ol><li class="toc-item toc-level-2"><a class="toc-link" href="#二、为Docker镜像下载加速"><span class="toc-text">二、为Docker镜像下载加速</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三、安装-Docker-Compose"><span class="toc-text">三、安装 Docker Compose</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1、简介"><span class="toc-text">1、简介</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2、安装"><span class="toc-text">2、安装</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3、开始创建"><span class="toc-text">3、开始创建</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#四、参考链接"><span class="toc-text">四、参考链接</span></a></li>
+              <a href="#" id="article-toc-top">回到顶部</a>
+            </div>
+          </aside>
+        </div>
+      </article>
+      <aside id="sidebar" role="navigation">
+  <div class="inner">
+    <strong class="sidebar-title">Linux</strong><a href="index.html" class="sidebar-link">基础</a><strong class="sidebar-title">Docker</strong><a href="start.html" class="sidebar-link current">Docker5分钟搭建WordPress</a>
+  </div>
+</aside>
+    </div>
+  </div>
+</div>
+
+    <footer id="footer" class="wrapper">
+  <div class="inner">
+    <div id="footer-copyright">
+      &copy; 2018 <a href="https://github.com/wulisensen/MyBlog" target="_blank">https://github.com/wulisensen/MyBlog</a><br>
+     如果你有任何问题，可以给我发邮件 wuguangsenwow@163.com
+    </div>
+  </div>
+</footer>
+
+  </div>
+  <div id="mobile-nav-dimmer"></div>
+  <nav id="mobile-nav">
+  <div id="mobile-nav-inner">
+    <ul id="mobile-nav-list">
+      <a href="/javascript/" class="mobile-nav-link">JavaScript</a><a href="/css/" class="mobile-nav-link">CSS</a><a href="/python/" class="mobile-nav-link">Python</a><a href="/redis/" class="mobile-nav-link">Redis</a><a href="/mysql/" class="mobile-nav-link">MySQL</a><a href="/mongodb/" class="mobile-nav-link">MongoDB</a><a href="/linux/" class="mobile-nav-link">Linux</a><a href="/nginx/" class="mobile-nav-link">Nginx</a><a href="/git/" class="mobile-nav-link">Git</a>
+      <li class="mobile-nav-item">
+        <a href="https://github.com/hexojs/hexo" class="mobile-nav-link" rel="external" target="_blank">GitHub</a>
+      </li>
+    </ul>
+    
+      <strong class="mobile-nav-title">Linux</strong><a href="index.html" class="mobile-nav-link">基础</a><strong class="mobile-nav-title">Docker</strong><a href="start.html" class="mobile-nav-link current">Docker5分钟搭建WordPress</a>
+    
+  </div>
+  <div id="mobile-lang-select-wrap">
+    <span id="mobile-lang-select-label"><i class="fa fa-globe"></i><span>简体中文</span></span>
+    <select id="mobile-lang-select" data-canonical="">
+      
+        <option value="en">English</option>
+      
+        <option value="zh-tw">正體中文</option>
+      
+        <option value="zh-cn" selected>简体中文</option>
+      
+        <option value="ru">Русский</option>
+      
+        <option value="ko">한국어</option>
+      
+        <option value="pt-br">Português (Brasil)</option>
+      
+    </select>
+  </div>
+</nav>
+  <!-- Scripts -->
+<!-- build:js build/js/main.js -->
+<script src="/js/lang_select.js"></script>
+<script src="//p2.ifengimg.com/a/2017/1229/toc.js"></script>
+<script src="//p2.ifengimg.com/a/2017/1229/mobile_nav.js"></script>
+<!-- endbuild -->
+
+<!-- Algolia -->
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script>
+<script type="text/javascript">
+document.getElementById('search-input-wrap').classList.add('on');
+docsearch({
+  apiKey: 'cdea7d4e47d84f6145b77e7f68689f35',
+  indexName: 'hexo_zh-cn',
+  inputSelector: '#search-input'
+});
+</script>
+
+
+</body>
+</html>
