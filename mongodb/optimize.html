@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head prefix="og: http://ogp.me/ns#"><meta name="generator" content="Hexo 3.7.1">
+  <meta charset="utf-8">
+  <title>MongoDB 聚合优化 | WuLiSenSen的技术博客</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>
+    if (window.location.pathname == '/') {
+      window.location.href = '/javascript/';
+    }
+  </script>
+  <!-- Canonical links -->
+  <link rel="canonical" href="https://www.wulisensen.com/zh-cn/mongodb/optimize.html">
+  <!-- Alternative links -->
+  
+    
+      <link rel="alternative" hreflang="en" href="https://www.wulisensen.com/mongodb/optimize.html">
+    
+      <link rel="alternative" hreflang="zh-tw" href="https://www.wulisensen.com/zh-tw/mongodb/optimize.html">
+    
+      <link rel="alternative" hreflang="zh-cn" href="https://www.wulisensen.com/zh-cn/mongodb/optimize.html">
+    
+      <link rel="alternative" hreflang="ru" href="https://www.wulisensen.com/ru/mongodb/optimize.html">
+    
+      <link rel="alternative" hreflang="ko" href="https://www.wulisensen.com/ko/mongodb/optimize.html">
+    
+      <link rel="alternative" hreflang="pt-br" href="https://www.wulisensen.com/pt-br/mongodb/optimize.html">
+    
+  
+  <!-- Icon -->
+  <link rel="apple-touch-icon" sizes="57x57" href="/icon/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/icon/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/icon/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/icon/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/icon/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/icon/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/icon/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/icon/apple-touch-icon-152x152.png">
+  <link rel="icon" type="image/png" href="/icon/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/icon/favicon-160x160.png" sizes="160x160">
+  <link rel="icon" type="image/png" href="/icon/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/icon/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/icon/favicon-32x32.png" sizes="32x32">
+  <meta name="msapplication-TileColor" content="#2f83cd">
+  <meta name="msapplication-TileImage" content="/icon/mstile-144x144.png">
+  <link rel="icon" href="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBH%0AZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE3LjAuMiwgU1ZHIEV4cG9y%0AdCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8%0AIURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4i%0AICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcx%0AMS5kdGQiPgo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IuWcluWxpF8xIiB4bWxu%0Acz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJo%0AdHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCIK%0ACSB3aWR0aD0iNTEycHgiIGhlaWdodD0iNTEycHgiIHZpZXdCb3g9IjAgMCA1%0AMTIgNTEyIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA1MTIgNTEyIiB4%0AbWw6c3BhY2U9InByZXNlcnZlIj4KPHBhdGggZmlsbD0iIzBFODNDRCIgZD0i%0ATTI1Ni40LDI1LjhsLTIwMCwxMTUuNUw1NiwzNzEuNWwxOTkuNiwxMTQuN2wy%0AMDAtMTE1LjVsMC40LTIzMC4yTDI1Ni40LDI1Ljh6IE0zNDksMzU0LjZsLTE4%0ALjQsMTAuNwoJbC0xOC42LTExVjI3NUgyMDB2NzkuNmwtMTguNCwxMC43bC0x%0AOC42LTExdi0xOTdsMTguNS0xMC42bDE4LjUsMTAuOFYyMzdoMTEydi03OS42%0AbDE4LjUtMTAuNmwxOC41LDEwLjhWMzU0LjZ6Ii8+Cjwvc3ZnPgo=" type="image/x-icon">
+  <!-- CSS -->
+  <link href="//p0.ifengimg.com/a/2018/0118/navy.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
+  <style>
+  .article-content{ min-height: 500px; }
+  #footer a i {
+    display: inline-block;
+    width: 14px;
+    height: 16px;
+    margin-right: 6px;
+    vertical-align: middle;
+    margin-top: -4px;
+    background: url(https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/icon-police.png?v=md5) 0 0 no-repeat
+  }
+  #logo-wrap #logo {
+    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBH%0AZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE3LjAuMiwgU1ZHIEV4cG9y%0AdCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8%0AIURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4i%0AICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcx%0AMS5kdGQiPgo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IuWcluWxpF8xIiB4bWxu%0Acz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJo%0AdHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCIK%0ACSB3aWR0aD0iNTEycHgiIGhlaWdodD0iNTEycHgiIHZpZXdCb3g9IjAgMCA1%0AMTIgNTEyIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA1MTIgNTEyIiB4%0AbWw6c3BhY2U9InByZXNlcnZlIj4KPHBhdGggZmlsbD0iIzBFODNDRCIgZD0i%0ATTI1Ni40LDI1LjhsLTIwMCwxMTUuNUw1NiwzNzEuNWwxOTkuNiwxMTQuN2wy%0AMDAtMTE1LjVsMC40LTIzMC4yTDI1Ni40LDI1Ljh6IE0zNDksMzU0LjZsLTE4%0ALjQsMTAuNwoJbC0xOC42LTExVjI3NUgyMDB2NzkuNmwtMTguNCwxMC43bC0x%0AOC42LTExdi0xOTdsMTguNS0xMC42bDE4LjUsMTAuOFYyMzdoMTEydi03OS42%0AbDE4LjUtMTAuNmwxOC41LDEwLjhWMzU0LjZ6Ii8+Cjwvc3ZnPgo=);
+    background-size: contain;
+  }
+  </style>
+  <!-- RSS -->
+  <link rel="alternate" href="/atom.xml" title="WuLiSenSen的技术博客">
+  <!-- Open Graph -->
+  <meta name="description" content="聚合管道优化1、$group 不使用 索引，想要使用 要借助 $match、\$sort 2、$match 、 $sort 都可以 使用 索引，但是 key 要 小于等于 索引 3、$match 和 $sort 共存时，聚合优化器 会自动把 $match 提到 $sort 之前 4、可以使用 \$match 强行 匹配索引，里面 有的 字段 不确定的 条件为 不等于 1 个 不太可能 中签的 值">
+<meta property="og:type" content="website">
+<meta property="og:title" content="MongoDB 聚合优化">
+<meta property="og:url" content="https://www.wulisensen.com/zh-cn/mongodb/optimize.html">
+<meta property="og:site_name" content="WuLiSenSen的技术博客">
+<meta property="og:description" content="聚合管道优化1、$group 不使用 索引，想要使用 要借助 $match、\$sort 2、$match 、 $sort 都可以 使用 索引，但是 key 要 小于等于 索引 3、$match 和 $sort 共存时，聚合优化器 会自动把 $match 提到 $sort 之前 4、可以使用 \$match 强行 匹配索引，里面 有的 字段 不确定的 条件为 不等于 1 个 不太可能 中签的 值">
+<meta property="og:locale" content="zh-cn">
+<meta property="og:updated_time" content="2019-03-21T03:02:53.408Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MongoDB 聚合优化">
+<meta name="twitter:description" content="聚合管道优化1、$group 不使用 索引，想要使用 要借助 $match、\$sort 2、$match 、 $sort 都可以 使用 索引，但是 key 要 小于等于 索引 3、$match 和 $sort 共存时，聚合优化器 会自动把 $match 提到 $sort 之前 4、可以使用 \$match 强行 匹配索引，里面 有的 字段 不确定的 条件为 不等于 1 个 不太可能 中签的 值">
+<meta name="twitter:site" content="hexojs">
+<meta property="fb:admins" content="100000247608790">
+  <!-- Google Analytics -->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-48498357-3', 'auto');
+  ga('send', 'pageview');
+</script>
+
+  <!-- Baidu Count -->
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?a88436595b1b6b29a3e65f5eac5b2d30";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+</head>
+
+<body>
+  <div id="container">
+    <header id="header" class="wrapper">
+  <div id="header-inner" class="inner">
+    <h1 id="logo-wrap">
+      <a href="/zh-cn/" id="logo"></a>
+    </h1>
+    <nav id="main-nav">
+      <a href="../javascript/" class="main-nav-link">JavaScript</a><a href="../css/" class="main-nav-link">CSS</a><a href="../python/" class="main-nav-link">Python</a><a href="../redis/" class="main-nav-link">Redis</a><a href="../mysql/" class="main-nav-link">MySQL</a><a href="../mongodb/" class="main-nav-link">MongoDB</a><a href="../linux/" class="main-nav-link">Linux</a><a href="../nginx/" class="main-nav-link">Nginx</a><a href="../git/" class="main-nav-link">Git</a><a href="../gulp/" class="main-nav-link">Gulp</a>
+    </nav>
+    <a id="mobile-nav-toggle">
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+    </a>
+  </div>
+</header>
+
+    <div id="content-wrap">
+  <div id="content" class="wrapper">
+    <div id="content-inner">
+      <article class="article-container" itemscope="" itemtype="http://schema.org/Article">
+        <div class="article-inner">
+          <div class="article">
+            <div class="inner">
+              <header class="article-header">
+                <h1 class="article-title" itemprop="name">MongoDB 聚合优化</h1>
+                <a href="https://github.com/hexojs/site/edit/master/source/zh-cn/mongodb/optimize.md" class="article-edit-link" title="改进本文"><i class="fa fa-pencil"></i></a>
+              </header>
+              <div class="article-content" itemprop="articleBody">
+                <h2 id="聚合管道优化" class="article-heading"><a href="#聚合管道优化" class="headerlink" title="聚合管道优化"></a>聚合管道优化<a class="article-anchor" href="#聚合管道优化" aria-hidden="true"></a></h2><p>1、$group 不使用 索引，想要使用 要借助 $match、\$sort</p>
+<p>2、$match 、 $sort 都可以 使用 索引，但是 key 要 小于等于 索引</p>
+<p>3、$match 和 $sort 共存时，聚合优化器 会自动把 $match 提到 $sort 之前</p>
+<p>4、可以使用 \$match 强行 匹配索引，里面 有的 字段 不确定的 条件为 不等于 1 个 不太可能 中签的 值</p>
+<h2 id="实例" class="article-heading"><a href="#实例" class="headerlink" title="实例"></a>实例<a class="article-anchor" href="#实例" aria-hidden="true"></a></h2><h3 id="1、想实现-按-type-和-vertical-聚合操作，然后-统计-数量" class="article-heading"><a href="#1、想实现-按-type-和-vertical-聚合操作，然后-统计-数量" class="headerlink" title="1、想实现 按 type 和 vertical 聚合操作，然后 统计 数量"></a>1、想实现 按 type 和 vertical 聚合操作，然后 统计 数量<a class="article-anchor" href="#1、想实现-按-type-和-vertical-聚合操作，然后-统计-数量" aria-hidden="true"></a></h3><p>按 type vertical 创建索引</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">db.getCollection('articleCollection').aggregate([</span><br><span class="line">&#123;</span><br><span class="line">    $group: &#123;</span><br><span class="line">    _id: &#123;</span><br><span class="line">        type: "$type",</span><br><span class="line">        vertical: "$vertical"</span><br><span class="line">    &#125;,</span><br><span class="line">    count: &#123;$sum: 1&#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;])</span><br></pre></td></tr></table></figure>
+<p>数据库 里 有不到 5w 条 数据, 然后需要 6s！</p>
+<h3 id="2、通过-explain-分析，发现没有使用索引" class="article-heading"><a href="#2、通过-explain-分析，发现没有使用索引" class="headerlink" title="2、通过 explain 分析，发现没有使用索引"></a>2、通过 explain 分析，发现没有使用索引<a class="article-anchor" href="#2、通过-explain-分析，发现没有使用索引" aria-hidden="true"></a></h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">db.getCollection('articleCollection').aggregate([</span><br><span class="line">&#123;</span><br><span class="line">    $group: &#123;</span><br><span class="line">    _id: &#123;</span><br><span class="line">        type: "$type",</span><br><span class="line">        vertical: "$vertical"</span><br><span class="line">    &#125;,</span><br><span class="line">    count: &#123;$sum: 1&#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;], &#123;explain: true&#125;)</span><br></pre></td></tr></table></figure>
+<p>通过 查看 winningPlan 里的 stage 为 COLLSCAN， 意思是 未使用 索引</p>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    ...,</span><br><span class="line">    "winningPlan" : &#123;</span><br><span class="line">        "stage" : "COLLSCAN",</span><br><span class="line">        "direction" : "forward"</span><br><span class="line">    &#125;</span><br><span class="line">    ...,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="3、经过-查询文档，发现-group-是不使用-索引，要想使用-得需要-使用-别的办法" class="article-heading"><a href="#3、经过-查询文档，发现-group-是不使用-索引，要想使用-得需要-使用-别的办法" class="headerlink" title="3、经过 查询文档，发现 \$group 是不使用 索引，要想使用 得需要 使用 别的办法"></a>3、经过 查询文档，发现 \$group 是不使用 索引，要想使用 得需要 使用 别的办法<a class="article-anchor" href="#3、经过-查询文档，发现-group-是不使用-索引，要想使用-得需要-使用-别的办法" aria-hidden="true"></a></h3><p>这里用了 \$sort</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">db.getCollection('articleCollection').aggregate([</span><br><span class="line">    &#123;</span><br><span class="line">        $sort: &#123;</span><br><span class="line">            type : 1 ,</span><br><span class="line">            vertical : 1</span><br><span class="line">         &#125;</span><br><span class="line">     &#125;,</span><br><span class="line">     &#123;</span><br><span class="line">         $group: &#123;</span><br><span class="line">            _id: &#123;</span><br><span class="line">               type: "$type",</span><br><span class="line">               vertical: "$vertical"</span><br><span class="line">            &#125;,</span><br><span class="line">            count: &#123;$sum: 1&#125;</span><br><span class="line">         &#125;</span><br><span class="line">     &#125;</span><br><span class="line">])</span><br></pre></td></tr></table></figure>
+<p>查询 时间为 0.187s! 基本 能 解决了 我的问题</p>
+<h3 id="4、但是-我-还有-其他的-参数，比如-有个-score、pushTime-都需要-作为-match-参数-搜索" class="article-heading"><a href="#4、但是-我-还有-其他的-参数，比如-有个-score、pushTime-都需要-作为-match-参数-搜索" class="headerlink" title="4、但是 我 还有 其他的 参数，比如 有个 score、pushTime, 都需要 作为 \$match 参数 搜索"></a>4、但是 我 还有 其他的 参数，比如 有个 score、pushTime, 都需要 作为 \$match 参数 搜索<a class="article-anchor" href="#4、但是-我-还有-其他的-参数，比如-有个-score、pushTime-都需要-作为-match-参数-搜索" aria-hidden="true"></a></h3><p>当 $sort 和 $match 一起使用时</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">db.getCollection('articleCollection').aggregate([</span><br><span class="line">    &#123;</span><br><span class="line">        $sort: &#123;</span><br><span class="line">            type : 1 ,</span><br><span class="line">            vertical : 1</span><br><span class="line">         &#125;</span><br><span class="line">     &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        $match: &#123;</span><br><span class="line">            score : &#123;</span><br><span class="line">                $gte: 100</span><br><span class="line">            &#125;,</span><br><span class="line">            pushTime : &#123;</span><br><span class="line">                $gte: 100</span><br><span class="line">            &#125;</span><br><span class="line">         &#125;</span><br><span class="line">     &#125;,</span><br><span class="line">     &#123;</span><br><span class="line">         $group: &#123;</span><br><span class="line">            _id: &#123;</span><br><span class="line">               type: "$type",</span><br><span class="line">               vertical: "$vertical"</span><br><span class="line">            &#125;,</span><br><span class="line">            count: &#123;$sum: 1&#125;</span><br><span class="line">         &#125;</span><br><span class="line">     &#125;</span><br><span class="line">])</span><br></pre></td></tr></table></figure>
+<p>发现 搜索时间 又变成了 6s！</p>
+<p>经过查询文档，发现 mongodb 的 聚合优化器 会把 $match 提到 $sort 之前，导致了 不能使用索引</p>
+<h3 id="5、多次试验后-使用的-方案" class="article-heading"><a href="#5、多次试验后-使用的-方案" class="headerlink" title="5、多次试验后 使用的 方案:"></a>5、多次试验后 使用的 方案:<a class="article-anchor" href="#5、多次试验后-使用的-方案" aria-hidden="true"></a></h3><p>创建了 type vertical score publishTime 作为 索引</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">db.getCollection('articleCollection').aggregate([</span><br><span class="line">    &#123;</span><br><span class="line">        $match: &#123;</span><br><span class="line">            type: &#123;$ne: "随便写的"&#125;,</span><br><span class="line">            vertical: &#123;$ne: "随便写的"&#125;,</span><br><span class="line">            score: &#123;$gte: 100&#125;,</span><br><span class="line">            publishTime: &#123;$gte: 0&#125;</span><br><span class="line">         &#125;</span><br><span class="line">     &#125;,</span><br><span class="line">     &#123;</span><br><span class="line">         $group: &#123;</span><br><span class="line">            _id: &#123;</span><br><span class="line">               type: "$type",</span><br><span class="line">               vertical: "$vertical"</span><br><span class="line">            &#125;,</span><br><span class="line">            count: &#123;$sum: 1&#125;</span><br><span class="line">         &#125;</span><br><span class="line">     &#125;</span><br><span class="line">])</span><br></pre></td></tr></table></figure>
+<p>其中 type vertical 只要 不等于 给定的值 就可以</p>
+<p>成功 实现了 0.2s 内返回数据!</p>
+<h3 id="6、最后的-方案" class="article-heading"><a href="#6、最后的-方案" class="headerlink" title="6、最后的 方案"></a>6、最后的 方案<a class="article-anchor" href="#6、最后的-方案" aria-hidden="true"></a></h3><p>经过 数据对比，发现 少统计了一部分数据</p>
+<p>原来的 有的 数据 是 没有 score、publishTime 字段的，group 的时候 会变成 null, 但是 我们限定了 &gt;= 0 ,所以 不能被 搜索到</p>
+<p>索性 都改成 不等于 1 个值</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">db.getCollection('articleCollection').aggregate([</span><br><span class="line">    &#123;</span><br><span class="line">        $match: &#123;</span><br><span class="line">            type: &#123;$ne: "随便写的"&#125;,</span><br><span class="line">            vertical: &#123;$ne: "随便写的"&#125;,</span><br><span class="line">            score: &#123;$ne: "随便写的"&#125;,</span><br><span class="line">            publishTime: &#123;$ne: "随便写的"&#125;,</span><br><span class="line">         &#125;</span><br><span class="line">     &#125;,</span><br><span class="line">     &#123;</span><br><span class="line">         $group: &#123;</span><br><span class="line">            _id: &#123;</span><br><span class="line">               type: "$type",</span><br><span class="line">               vertical: "$vertical"</span><br><span class="line">            &#125;,</span><br><span class="line">            count: &#123;$sum: 1&#125;</span><br><span class="line">         &#125;</span><br><span class="line">     &#125;</span><br><span class="line">])</span><br></pre></td></tr></table></figure>
+<p>完美的实现了 我们的 需求</p>
+
+              </div>
+              <footer class="article-footer">
+                <time class="article-footer-updated" datetime="2019-03-21T03:02:53.408Z" itemprop="dateModified">上次更新：2019-03-21</time>
+                <a href="update.html" class="article-footer-prev" title="更新数据"><i class="fa fa-chevron-left"></i><span>上一页</span></a><a href="example.html" class="article-footer-next" title="优化实战"><span>下一页</span><i class="fa fa-chevron-right"></i></a>
+              </footer>
+              
+
+<script>
+  var disqus_shortname = 'hexojs';
+  var disqus_url = 'https://www.wulisensen.com/zh-cn/mongodb/optimize.html';
+  var disqus_title = "MongoDB 聚合优化";
+  var disqus_config = function(){
+    this.language = 'zh';
+  };
+  (function(){
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = 'https://go.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+            </div>
+          </div>
+          <aside id="article-toc" role="navigation">
+            <div id="article-toc-inner">
+              <strong class="sidebar-title">目录</strong>
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#聚合管道优化"><span class="toc-text">聚合管道优化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实例"><span class="toc-text">实例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1、想实现-按-type-和-vertical-聚合操作，然后-统计-数量"><span class="toc-text">1、想实现 按 type 和 vertical 聚合操作，然后 统计 数量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2、通过-explain-分析，发现没有使用索引"><span class="toc-text">2、通过 explain 分析，发现没有使用索引</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3、经过-查询文档，发现-group-是不使用-索引，要想使用-得需要-使用-别的办法"><span class="toc-text">3、经过 查询文档，发现 \$group 是不使用 索引，要想使用 得需要 使用 别的办法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4、但是-我-还有-其他的-参数，比如-有个-score、pushTime-都需要-作为-match-参数-搜索"><span class="toc-text">4、但是 我 还有 其他的 参数，比如 有个 score、pushTime, 都需要 作为 \$match 参数 搜索</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5、多次试验后-使用的-方案"><span class="toc-text">5、多次试验后 使用的 方案:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6、最后的-方案"><span class="toc-text">6、最后的 方案</span></a></li></ol></li></ol>
+              <a href="#" id="article-toc-top">回到顶部</a>
+            </div>
+          </aside>
+        </div>
+      </article>
+      <aside id="sidebar" role="navigation">
+  <div class="inner">
+    <strong class="sidebar-title">MongoDB</strong><a href="index.html" class="sidebar-link">安装</a><a href="init.html" class="sidebar-link">初始化</a><a href="update.html" class="sidebar-link">更新数据</a><a href="optimize.html" class="sidebar-link current">优化</a><a href="example.html" class="sidebar-link">优化实战</a><a href="good.html" class="sidebar-link">另类优化</a><a href="join.html" class="sidebar-link">使用JOIN操作</a><a href="first.html" class="sidebar-link">$first输出字段</a><a href="object.html" class="sidebar-link">对象数组的查询</a><a href="push.html" class="sidebar-link">$push字段转数组</a><a href="unwind.html" class="sidebar-link">$unwind解构字段</a>
+  </div>
+</aside>
+    </div>
+  </div>
+</div>
+
+    <footer id="footer" class="wrapper">
+  <div class="inner">
+    <div id="footer-copyright">
+      &copy; 2019<br>
+     <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=18052356" target="_blank"><i></i>京ICP备18052356号</a>
+    </div>
+  </div>
+</footer>
+
+  </div>
+  <div id="mobile-nav-dimmer"></div>
+  <nav id="mobile-nav">
+  <div id="mobile-nav-inner">
+    <ul id="mobile-nav-list">
+      <a href="../javascript/" class="mobile-nav-link">JavaScript</a><a href="../css/" class="mobile-nav-link">CSS</a><a href="../python/" class="mobile-nav-link">Python</a><a href="../redis/" class="mobile-nav-link">Redis</a><a href="../mysql/" class="mobile-nav-link">MySQL</a><a href="../mongodb/" class="mobile-nav-link">MongoDB</a><a href="../linux/" class="mobile-nav-link">Linux</a><a href="../nginx/" class="mobile-nav-link">Nginx</a><a href="../git/" class="mobile-nav-link">Git</a><a href="../gulp/" class="mobile-nav-link">Gulp</a>
+      <li class="mobile-nav-item">
+        <a href="https://github.com/hexojs/hexo" class="mobile-nav-link" rel="external" target="_blank">GitHub</a>
+      </li>
+    </ul>
+    
+      <strong class="mobile-nav-title">MongoDB</strong><a href="index.html" class="mobile-nav-link">安装</a><a href="init.html" class="mobile-nav-link">初始化</a><a href="update.html" class="mobile-nav-link">更新数据</a><a href="optimize.html" class="mobile-nav-link current">优化</a><a href="example.html" class="mobile-nav-link">优化实战</a><a href="good.html" class="mobile-nav-link">另类优化</a><a href="join.html" class="mobile-nav-link">使用JOIN操作</a><a href="first.html" class="mobile-nav-link">$first输出字段</a><a href="object.html" class="mobile-nav-link">对象数组的查询</a><a href="push.html" class="mobile-nav-link">$push字段转数组</a><a href="unwind.html" class="mobile-nav-link">$unwind解构字段</a>
+    
+  </div>
+  <div id="mobile-lang-select-wrap">
+    <span id="mobile-lang-select-label"><i class="fa fa-globe"></i><span>简体中文</span></span>
+    <select id="mobile-lang-select" data-canonical="">
+      
+        <option value="en">English</option>
+      
+        <option value="zh-tw">正體中文</option>
+      
+        <option value="zh-cn" selected>简体中文</option>
+      
+        <option value="ru">Русский</option>
+      
+        <option value="ko">한국어</option>
+      
+        <option value="pt-br">Português (Brasil)</option>
+      
+    </select>
+  </div>
+</nav>
+  <!-- Scripts -->
+<!-- build:js build/js/main.js -->
+<script src="//p2.ifengimg.com/a/2017/1229/toc.js"></script>
+<script src="//p2.ifengimg.com/a/2017/1229/mobile_nav.js"></script>
+<!-- endbuild -->
+
+<!-- Algolia -->
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script>
+<script type="text/javascript">
+document.getElementById('search-input-wrap').classList.add('on');
+docsearch({
+  apiKey: 'cdea7d4e47d84f6145b77e7f68689f35',
+  indexName: 'hexo_zh-cn',
+  inputSelector: '#search-input'
+});
+</script>
+
+
+</body>
+</html>

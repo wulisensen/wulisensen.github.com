@@ -2,7 +2,7 @@
 <html lang="zh-cn">
 <head prefix="og: http://ogp.me/ns#"><meta name="generator" content="Hexo 3.7.1">
   <meta charset="utf-8">
-  <title>事件 | WuLiSenSen的技术博客</title>
+  <title>Gulp实现项目一键部署 | WuLiSenSen的技术博客</title>
   <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script>
@@ -11,21 +11,21 @@
     }
   </script>
   <!-- Canonical links -->
-  <link rel="canonical" href="https://www.wulisensen.com/zh-cn/api/events.html">
+  <link rel="canonical" href="https://www.wulisensen.com/zh-cn/gulp/index.html">
   <!-- Alternative links -->
   
     
-      <link rel="alternative" hreflang="en" href="https://www.wulisensen.com/api/events.html">
+      <link rel="alternative" hreflang="en" href="https://www.wulisensen.com/gulp/index.html">
     
-      <link rel="alternative" hreflang="zh-tw" href="https://www.wulisensen.com/zh-tw/api/events.html">
+      <link rel="alternative" hreflang="zh-tw" href="https://www.wulisensen.com/zh-tw/gulp/index.html">
     
-      <link rel="alternative" hreflang="zh-cn" href="https://www.wulisensen.com/zh-cn/api/events.html">
+      <link rel="alternative" hreflang="zh-cn" href="https://www.wulisensen.com/zh-cn/gulp/index.html">
     
-      <link rel="alternative" hreflang="ru" href="https://www.wulisensen.com/ru/api/events.html">
+      <link rel="alternative" hreflang="ru" href="https://www.wulisensen.com/ru/gulp/index.html">
     
-      <link rel="alternative" hreflang="ko" href="https://www.wulisensen.com/ko/api/events.html">
+      <link rel="alternative" hreflang="ko" href="https://www.wulisensen.com/ko/gulp/index.html">
     
-      <link rel="alternative" hreflang="pt-br" href="https://www.wulisensen.com/pt-br/api/events.html">
+      <link rel="alternative" hreflang="pt-br" href="https://www.wulisensen.com/pt-br/gulp/index.html">
     
   
   <!-- Icon -->
@@ -67,17 +67,17 @@
   <!-- RSS -->
   <link rel="alternate" href="/atom.xml" title="WuLiSenSen的技术博客">
   <!-- Open Graph -->
-  <meta name="description" content="Hexo 继承了 EventEmitter，您可以用 on 方法监听 Hexo 所发布的事件，也可以使用 emit 方法对 Hexo 发布事件，更详细的说明请参阅 Node.js 的 API。 deployBefore在部署完成前发布。 deployAfter在部署成功后发布。 exit在 Hexo 结束前发布。 generateBefore在静态文件生成前发布。 generateAfter在静态">
+  <meta name="description" content="1、安装gulp和gulp-sftp$ npm i gulp gulp-sftp --save-dev 2、在项目根目录新建gulp配置文件gulpfile.jsvar gulp = require(&apos;gulp&apos;);var sftp = require(&apos;gulp-sftp&apos;);const sftpOption = &amp;#123;host: &apos;120.77.221.25&apos;, // FTP主机地址au">
 <meta property="og:type" content="website">
-<meta property="og:title" content="事件">
-<meta property="og:url" content="https://www.wulisensen.com/zh-cn/api/events.html">
+<meta property="og:title" content="Gulp实现项目一键部署">
+<meta property="og:url" content="https://www.wulisensen.com/zh-cn/gulp/index.html">
 <meta property="og:site_name" content="WuLiSenSen的技术博客">
-<meta property="og:description" content="Hexo 继承了 EventEmitter，您可以用 on 方法监听 Hexo 所发布的事件，也可以使用 emit 方法对 Hexo 发布事件，更详细的说明请参阅 Node.js 的 API。 deployBefore在部署完成前发布。 deployAfter在部署成功后发布。 exit在 Hexo 结束前发布。 generateBefore在静态文件生成前发布。 generateAfter在静态">
+<meta property="og:description" content="1、安装gulp和gulp-sftp$ npm i gulp gulp-sftp --save-dev 2、在项目根目录新建gulp配置文件gulpfile.jsvar gulp = require(&apos;gulp&apos;);var sftp = require(&apos;gulp-sftp&apos;);const sftpOption = &amp;#123;host: &apos;120.77.221.25&apos;, // FTP主机地址au">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2018-11-10T09:51:38.702Z">
+<meta property="og:updated_time" content="2019-03-29T08:44:08.944Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="事件">
-<meta name="twitter:description" content="Hexo 继承了 EventEmitter，您可以用 on 方法监听 Hexo 所发布的事件，也可以使用 emit 方法对 Hexo 发布事件，更详细的说明请参阅 Node.js 的 API。 deployBefore在部署完成前发布。 deployAfter在部署成功后发布。 exit在 Hexo 结束前发布。 generateBefore在静态文件生成前发布。 generateAfter在静态">
+<meta name="twitter:title" content="Gulp实现项目一键部署">
+<meta name="twitter:description" content="1、安装gulp和gulp-sftp$ npm i gulp gulp-sftp --save-dev 2、在项目根目录新建gulp配置文件gulpfile.jsvar gulp = require(&apos;gulp&apos;);var sftp = require(&apos;gulp-sftp&apos;);const sftpOption = &amp;#123;host: &apos;120.77.221.25&apos;, // FTP主机地址au">
 <meta name="twitter:site" content="hexojs">
 <meta property="fb:admins" content="100000247608790">
   <!-- Google Analytics -->
@@ -130,51 +130,35 @@ var _hmt = _hmt || [];
           <div class="article">
             <div class="inner">
               <header class="article-header">
-                <h1 class="article-title" itemprop="name">事件</h1>
-                <a href="https://github.com/hexojs/site/edit/master/source/zh-cn/api/events.md" class="article-edit-link" title="改进本文"><i class="fa fa-pencil"></i></a>
+                <h1 class="article-title" itemprop="name">Gulp实现项目一键部署</h1>
+                <a href="https://github.com/hexojs/site/edit/master/source/zh-cn/gulp/index.md" class="article-edit-link" title="改进本文"><i class="fa fa-pencil"></i></a>
               </header>
               <div class="article-content" itemprop="articleBody">
-                <p>Hexo 继承了 <a href="http://nodejs.org/api/events.html" target="_blank" rel="noopener">EventEmitter</a>，您可以用 <code>on</code> 方法监听 Hexo 所发布的事件，也可以使用 <code>emit</code> 方法对 Hexo 发布事件，更详细的说明请参阅 Node.js 的 API。</p>
-<h3 id="deployBefore" class="article-heading"><a href="#deployBefore" class="headerlink" title="deployBefore"></a>deployBefore<a class="article-anchor" href="#deployBefore" aria-hidden="true"></a></h3><p>在部署完成前发布。</p>
-<h3 id="deployAfter" class="article-heading"><a href="#deployAfter" class="headerlink" title="deployAfter"></a>deployAfter<a class="article-anchor" href="#deployAfter" aria-hidden="true"></a></h3><p>在部署成功后发布。</p>
-<h3 id="exit" class="article-heading"><a href="#exit" class="headerlink" title="exit"></a>exit<a class="article-anchor" href="#exit" aria-hidden="true"></a></h3><p>在 Hexo 结束前发布。</p>
-<h3 id="generateBefore" class="article-heading"><a href="#generateBefore" class="headerlink" title="generateBefore"></a>generateBefore<a class="article-anchor" href="#generateBefore" aria-hidden="true"></a></h3><p>在静态文件生成前发布。</p>
-<h3 id="generateAfter" class="article-heading"><a href="#generateAfter" class="headerlink" title="generateAfter"></a>generateAfter<a class="article-anchor" href="#generateAfter" aria-hidden="true"></a></h3><p>在静态文件生成后发布。</p>
-<h3 id="new" class="article-heading"><a href="#new" class="headerlink" title="new"></a>new<a class="article-anchor" href="#new" aria-hidden="true"></a></h3><p>在文章文件建立后发布。该事件返回文章参数。</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">hexo.on(<span class="string">'new'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">post</span>)</span>&#123;</span><br><span class="line">  <span class="comment">// </span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<table>
-<thead>
-<tr>
-<th>资料</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>post.path</code></td>
-<td>文章文件的完整路径</td>
-</tr>
-<tr>
-<td><code>post.content</code></td>
-<td>文章文件的内容</td>
-</tr>
-</tbody>
-</table>
-<h3 id="processBefore" class="article-heading"><a href="#processBefore" class="headerlink" title="processBefore"></a>processBefore<a class="article-anchor" href="#processBefore" aria-hidden="true"></a></h3><p>在处理原始文件前发布。此事件会返回一个地址，代表 Box（Box）的根目录。</p>
-<h3 id="processAfter" class="article-heading"><a href="#processAfter" class="headerlink" title="processAfter"></a>processAfter<a class="article-anchor" href="#processAfter" aria-hidden="true"></a></h3><p>在原始文件处理后发布。此事件会返回一个地址，代表 Box（Box）的根目录。</p>
-<h3 id="ready" class="article-heading"><a href="#ready" class="headerlink" title="ready"></a>ready<a class="article-anchor" href="#ready" aria-hidden="true"></a></h3><p>在初始化完成后发布。</p>
+                <h2 id="1、安装gulp和gulp-sftp" class="article-heading"><a href="#1、安装gulp和gulp-sftp" class="headerlink" title="1、安装gulp和gulp-sftp"></a>1、安装gulp和gulp-sftp<a class="article-anchor" href="#1、安装gulp和gulp-sftp" aria-hidden="true"></a></h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> npm i gulp gulp-sftp --save-dev</span></span><br></pre></td></tr></table></figure>
+<h2 id="2、在项目根目录新建gulp配置文件gulpfile-js" class="article-heading"><a href="#2、在项目根目录新建gulp配置文件gulpfile-js" class="headerlink" title="2、在项目根目录新建gulp配置文件gulpfile.js"></a>2、在项目根目录新建gulp配置文件<code>gulpfile.js</code><a class="article-anchor" href="#2、在项目根目录新建gulp配置文件gulpfile-js" aria-hidden="true"></a></h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> gulp = <span class="built_in">require</span>(<span class="string">'gulp'</span>);</span><br><span class="line"><span class="keyword">var</span> sftp = <span class="built_in">require</span>(<span class="string">'gulp-sftp'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> sftpOption = &#123;</span><br><span class="line">host: <span class="string">'120.77.221.25'</span>, <span class="comment">// FTP主机地址</span></span><br><span class="line">auth: <span class="string">'FTPServer1'</span>, <span class="comment">// 下一步创建的 .ftppass 文件里面对应的授权方式</span></span><br><span class="line">remotePath: <span class="string">'/data/www/xxxx.com/'</span>, <span class="comment">// FTP需要上传的位置</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">gulp.task(<span class="string">'upload'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> gulp.src(<span class="string">'dist/**'</span>)</span><br><span class="line">        .pipe(sftp(sftpOption));</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h2 id="3、创建gulp-sftp配置文件-ftppass" class="article-heading"><a href="#3、创建gulp-sftp配置文件-ftppass" class="headerlink" title="3、创建gulp-sftp配置文件.ftppass"></a>3、创建gulp-sftp配置文件.ftppass<a class="article-anchor" href="#3、创建gulp-sftp配置文件-ftppass" aria-hidden="true"></a></h2><blockquote>
+<p>为了保证ftp账号安全，将FTP账号密码配置放在单独的文件中，并添加至版本控制系统的禁用列表中</p>
+</blockquote>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"FTPServer1"</span>: &#123;</span><br><span class="line">        <span class="attr">"user"</span>: <span class="string">"root"</span>,</span><br><span class="line">        <span class="attr">"pass"</span>: <span class="string">"xxxxxxx"</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="4、至此我们可以使用gulp来执行定义的上传任务了" class="article-heading"><a href="#4、至此我们可以使用gulp来执行定义的上传任务了" class="headerlink" title="4、至此我们可以使用gulp来执行定义的上传任务了"></a>4、至此我们可以使用gulp来执行定义的上传任务了<a class="article-anchor" href="#4、至此我们可以使用gulp来执行定义的上传任务了" aria-hidden="true"></a></h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> gulp upload</span></span><br></pre></td></tr></table></figure>
+<p>执行命令后我们项目的dist目录下的所有文件都上传到服务器/data/www/xxxx.com/目录下了</p>
+<h2 id="5、创建命令" class="article-heading"><a href="#5、创建命令" class="headerlink" title="5、创建命令"></a>5、创建命令<a class="article-anchor" href="#5、创建命令" aria-hidden="true"></a></h2><p>为了方便我们构建完成后自动上传可以<code>package.json</code>中定义一个命令</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"scripts"</span>: &#123;</span><br><span class="line">    <span class="attr">"upload"</span>: <span class="string">"gulp upload"</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这样我们就可以直接执行<code>npm run upload</code>命令来编译并上传我们的应用了</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> npm run upload</span></span><br></pre></td></tr></table></figure>
+<h2 id="6、参考链接" class="article-heading"><a href="#6、参考链接" class="headerlink" title="6、参考链接"></a>6、参考链接<a class="article-anchor" href="#6、参考链接" aria-hidden="true"></a></h2><p><a href="https://xiaozhuanlan.com/topic/1379680524" target="_blank" rel="noopener">https://xiaozhuanlan.com/topic/1379680524</a></p>
 
               </div>
               <footer class="article-footer">
-                <time class="article-footer-updated" datetime="2018-11-10T09:51:38.702Z" itemprop="dateModified">上次更新：2018-11-10</time>
-                <a href="index.html" class="article-footer-prev" title="概述"><i class="fa fa-chevron-left"></i><span>上一页</span></a><a href="locals.html" class="article-footer-next" title="本地变量"><span>下一页</span><i class="fa fa-chevron-right"></i></a>
+                <time class="article-footer-updated" datetime="2019-03-29T08:44:08.944Z" itemprop="dateModified">上次更新：2019-03-29</time>
+                
               </footer>
               
 
 <script>
   var disqus_shortname = 'hexojs';
-  var disqus_url = 'https://www.wulisensen.com/zh-cn/api/events.html';
-  var disqus_title = "事件";
+  var disqus_url = 'https://www.wulisensen.com/zh-cn/gulp/index.html';
+  var disqus_title = "Gulp实现项目一键部署";
   var disqus_config = function(){
     this.language = 'zh';
   };
@@ -190,7 +174,7 @@ var _hmt = _hmt || [];
           <aside id="article-toc" role="navigation">
             <div id="article-toc-inner">
               <strong class="sidebar-title">目录</strong>
-              <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#deployBefore"><span class="toc-text">deployBefore</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#deployAfter"><span class="toc-text">deployAfter</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#exit"><span class="toc-text">exit</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#generateBefore"><span class="toc-text">generateBefore</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#generateAfter"><span class="toc-text">generateAfter</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#new"><span class="toc-text">new</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#processBefore"><span class="toc-text">processBefore</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#processAfter"><span class="toc-text">processAfter</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ready"><span class="toc-text">ready</span></a></li></ol>
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1、安装gulp和gulp-sftp"><span class="toc-text">1、安装gulp和gulp-sftp</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2、在项目根目录新建gulp配置文件gulpfile-js"><span class="toc-text">2、在项目根目录新建gulp配置文件gulpfile.js</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3、创建gulp-sftp配置文件-ftppass"><span class="toc-text">3、创建gulp-sftp配置文件.ftppass</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4、至此我们可以使用gulp来执行定义的上传任务了"><span class="toc-text">4、至此我们可以使用gulp来执行定义的上传任务了</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5、创建命令"><span class="toc-text">5、创建命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6、参考链接"><span class="toc-text">6、参考链接</span></a></li></ol>
               <a href="#" id="article-toc-top">回到顶部</a>
             </div>
           </aside>
@@ -198,7 +182,7 @@ var _hmt = _hmt || [];
       </article>
       <aside id="sidebar" role="navigation">
   <div class="inner">
-    <strong class="sidebar-title">核心</strong><a href="index.html" class="sidebar-link">概述</a><a href="events.html" class="sidebar-link current">事件</a><a href="locals.html" class="sidebar-link">本地变量</a><a href="router.html" class="sidebar-link">路由</a><a href="box.html" class="sidebar-link">盒(Box)</a><a href="rendering.html" class="sidebar-link">渲染</a><a href="posts.html" class="sidebar-link">文章</a><a href="scaffolds.html" class="sidebar-link">模版 (Scaffold)</a><a href="themes.html" class="sidebar-link">主题</a><strong class="sidebar-title">扩展</strong><a href="console.html" class="sidebar-link">控制台 (Console)</a><a href="deployer.html" class="sidebar-link">部署器 (Deployer)</a><a href="filter.html" class="sidebar-link">过滤器 (Filter)</a><a href="generator.html" class="sidebar-link">生成器 (Generator)</a><a href="helper.html" class="sidebar-link">辅助函数 (Helper)</a><a href="migrator.html" class="sidebar-link">迁移器 (Migrator)</a><a href="processor.html" class="sidebar-link">处理器 (Processor)</a><a href="renderer.html" class="sidebar-link">渲染引擎 (Renderer)</a><a href="tag.html" class="sidebar-link">标签 (Tag)</a>
+    <strong class="sidebar-title">Gulp</strong><a href="index.html" class="sidebar-link current">Gulp实现一键部署</a>
   </div>
 </aside>
     </div>
@@ -225,12 +209,12 @@ var _hmt = _hmt || [];
       </li>
     </ul>
     
-      <strong class="mobile-nav-title">核心</strong><a href="index.html" class="mobile-nav-link">概述</a><a href="events.html" class="mobile-nav-link current">事件</a><a href="locals.html" class="mobile-nav-link">本地变量</a><a href="router.html" class="mobile-nav-link">路由</a><a href="box.html" class="mobile-nav-link">盒(Box)</a><a href="rendering.html" class="mobile-nav-link">渲染</a><a href="posts.html" class="mobile-nav-link">文章</a><a href="scaffolds.html" class="mobile-nav-link">模版 (Scaffold)</a><a href="themes.html" class="mobile-nav-link">主题</a><strong class="mobile-nav-title">扩展</strong><a href="console.html" class="mobile-nav-link">控制台 (Console)</a><a href="deployer.html" class="mobile-nav-link">部署器 (Deployer)</a><a href="filter.html" class="mobile-nav-link">过滤器 (Filter)</a><a href="generator.html" class="mobile-nav-link">生成器 (Generator)</a><a href="helper.html" class="mobile-nav-link">辅助函数 (Helper)</a><a href="migrator.html" class="mobile-nav-link">迁移器 (Migrator)</a><a href="processor.html" class="mobile-nav-link">处理器 (Processor)</a><a href="renderer.html" class="mobile-nav-link">渲染引擎 (Renderer)</a><a href="tag.html" class="mobile-nav-link">标签 (Tag)</a>
+      <strong class="mobile-nav-title">Gulp</strong><a href="index.html" class="mobile-nav-link current">Gulp实现一键部署</a>
     
   </div>
   <div id="mobile-lang-select-wrap">
     <span id="mobile-lang-select-label"><i class="fa fa-globe"></i><span>简体中文</span></span>
-    <select id="mobile-lang-select" data-canonical="api/events.html">
+    <select id="mobile-lang-select" data-canonical="">
       
         <option value="en">English</option>
       

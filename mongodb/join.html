@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head prefix="og: http://ogp.me/ns#"><meta name="generator" content="Hexo 3.7.1">
+  <meta charset="utf-8">
+  <title>在MongoDB中使用JOIN操作 | WuLiSenSen的技术博客</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>
+    if (window.location.pathname == '/') {
+      window.location.href = '/javascript/';
+    }
+  </script>
+  <!-- Canonical links -->
+  <link rel="canonical" href="https://www.wulisensen.com/zh-cn/mongodb/join.html">
+  <!-- Alternative links -->
+  
+    
+      <link rel="alternative" hreflang="en" href="https://www.wulisensen.com/mongodb/join.html">
+    
+      <link rel="alternative" hreflang="zh-tw" href="https://www.wulisensen.com/zh-tw/mongodb/join.html">
+    
+      <link rel="alternative" hreflang="zh-cn" href="https://www.wulisensen.com/zh-cn/mongodb/join.html">
+    
+      <link rel="alternative" hreflang="ru" href="https://www.wulisensen.com/ru/mongodb/join.html">
+    
+      <link rel="alternative" hreflang="ko" href="https://www.wulisensen.com/ko/mongodb/join.html">
+    
+      <link rel="alternative" hreflang="pt-br" href="https://www.wulisensen.com/pt-br/mongodb/join.html">
+    
+  
+  <!-- Icon -->
+  <link rel="apple-touch-icon" sizes="57x57" href="/icon/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/icon/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/icon/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/icon/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/icon/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/icon/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/icon/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/icon/apple-touch-icon-152x152.png">
+  <link rel="icon" type="image/png" href="/icon/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/icon/favicon-160x160.png" sizes="160x160">
+  <link rel="icon" type="image/png" href="/icon/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/icon/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/icon/favicon-32x32.png" sizes="32x32">
+  <meta name="msapplication-TileColor" content="#2f83cd">
+  <meta name="msapplication-TileImage" content="/icon/mstile-144x144.png">
+  <link rel="icon" href="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBH%0AZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE3LjAuMiwgU1ZHIEV4cG9y%0AdCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8%0AIURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4i%0AICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcx%0AMS5kdGQiPgo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IuWcluWxpF8xIiB4bWxu%0Acz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJo%0AdHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCIK%0ACSB3aWR0aD0iNTEycHgiIGhlaWdodD0iNTEycHgiIHZpZXdCb3g9IjAgMCA1%0AMTIgNTEyIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA1MTIgNTEyIiB4%0AbWw6c3BhY2U9InByZXNlcnZlIj4KPHBhdGggZmlsbD0iIzBFODNDRCIgZD0i%0ATTI1Ni40LDI1LjhsLTIwMCwxMTUuNUw1NiwzNzEuNWwxOTkuNiwxMTQuN2wy%0AMDAtMTE1LjVsMC40LTIzMC4yTDI1Ni40LDI1Ljh6IE0zNDksMzU0LjZsLTE4%0ALjQsMTAuNwoJbC0xOC42LTExVjI3NUgyMDB2NzkuNmwtMTguNCwxMC43bC0x%0AOC42LTExdi0xOTdsMTguNS0xMC42bDE4LjUsMTAuOFYyMzdoMTEydi03OS42%0AbDE4LjUtMTAuNmwxOC41LDEwLjhWMzU0LjZ6Ii8+Cjwvc3ZnPgo=" type="image/x-icon">
+  <!-- CSS -->
+  <link href="//p0.ifengimg.com/a/2018/0118/navy.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
+  <style>
+  .article-content{ min-height: 500px; }
+  #footer a i {
+    display: inline-block;
+    width: 14px;
+    height: 16px;
+    margin-right: 6px;
+    vertical-align: middle;
+    margin-top: -4px;
+    background: url(https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/icon-police.png?v=md5) 0 0 no-repeat
+  }
+  #logo-wrap #logo {
+    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBH%0AZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE3LjAuMiwgU1ZHIEV4cG9y%0AdCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8%0AIURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4i%0AICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcx%0AMS5kdGQiPgo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IuWcluWxpF8xIiB4bWxu%0Acz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJo%0AdHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCIK%0ACSB3aWR0aD0iNTEycHgiIGhlaWdodD0iNTEycHgiIHZpZXdCb3g9IjAgMCA1%0AMTIgNTEyIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA1MTIgNTEyIiB4%0AbWw6c3BhY2U9InByZXNlcnZlIj4KPHBhdGggZmlsbD0iIzBFODNDRCIgZD0i%0ATTI1Ni40LDI1LjhsLTIwMCwxMTUuNUw1NiwzNzEuNWwxOTkuNiwxMTQuN2wy%0AMDAtMTE1LjVsMC40LTIzMC4yTDI1Ni40LDI1Ljh6IE0zNDksMzU0LjZsLTE4%0ALjQsMTAuNwoJbC0xOC42LTExVjI3NUgyMDB2NzkuNmwtMTguNCwxMC43bC0x%0AOC42LTExdi0xOTdsMTguNS0xMC42bDE4LjUsMTAuOFYyMzdoMTEydi03OS42%0AbDE4LjUtMTAuNmwxOC41LDEwLjhWMzU0LjZ6Ii8+Cjwvc3ZnPgo=);
+    background-size: contain;
+  }
+  </style>
+  <!-- RSS -->
+  <link rel="alternate" href="/atom.xml" title="WuLiSenSen的技术博客">
+  <!-- Open Graph -->
+  <meta name="description" content="1、SQLSQL与NoSQL最大的不同之一就是不支持JOIN，在传统的数据库中，SQL JOIN子句允许你使用普通的字段，在两个或者是更多表中的组合表中的每行数据。例如，如果你有表books和publishers，你可以像下面这样写命令： SELECT book.title, publisher.nameFROM bookLEFT JOIN book.publisher_id ON publish">
+<meta property="og:type" content="website">
+<meta property="og:title" content="在MongoDB中使用JOIN操作">
+<meta property="og:url" content="https://www.wulisensen.com/zh-cn/mongodb/join.html">
+<meta property="og:site_name" content="WuLiSenSen的技术博客">
+<meta property="og:description" content="1、SQLSQL与NoSQL最大的不同之一就是不支持JOIN，在传统的数据库中，SQL JOIN子句允许你使用普通的字段，在两个或者是更多表中的组合表中的每行数据。例如，如果你有表books和publishers，你可以像下面这样写命令： SELECT book.title, publisher.nameFROM bookLEFT JOIN book.publisher_id ON publish">
+<meta property="og:locale" content="zh-cn">
+<meta property="og:updated_time" content="2019-06-28T03:36:04.266Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="在MongoDB中使用JOIN操作">
+<meta name="twitter:description" content="1、SQLSQL与NoSQL最大的不同之一就是不支持JOIN，在传统的数据库中，SQL JOIN子句允许你使用普通的字段，在两个或者是更多表中的组合表中的每行数据。例如，如果你有表books和publishers，你可以像下面这样写命令： SELECT book.title, publisher.nameFROM bookLEFT JOIN book.publisher_id ON publish">
+<meta name="twitter:site" content="hexojs">
+<meta property="fb:admins" content="100000247608790">
+  <!-- Google Analytics -->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-48498357-3', 'auto');
+  ga('send', 'pageview');
+</script>
+
+  <!-- Baidu Count -->
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?a88436595b1b6b29a3e65f5eac5b2d30";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+</head>
+
+<body>
+  <div id="container">
+    <header id="header" class="wrapper">
+  <div id="header-inner" class="inner">
+    <h1 id="logo-wrap">
+      <a href="/zh-cn/" id="logo"></a>
+    </h1>
+    <nav id="main-nav">
+      <a href="../javascript/" class="main-nav-link">JavaScript</a><a href="../css/" class="main-nav-link">CSS</a><a href="../python/" class="main-nav-link">Python</a><a href="../redis/" class="main-nav-link">Redis</a><a href="../mysql/" class="main-nav-link">MySQL</a><a href="../mongodb/" class="main-nav-link">MongoDB</a><a href="../linux/" class="main-nav-link">Linux</a><a href="../nginx/" class="main-nav-link">Nginx</a><a href="../git/" class="main-nav-link">Git</a><a href="../gulp/" class="main-nav-link">Gulp</a>
+    </nav>
+    <a id="mobile-nav-toggle">
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+    </a>
+  </div>
+</header>
+
+    <div id="content-wrap">
+  <div id="content" class="wrapper">
+    <div id="content-inner">
+      <article class="article-container" itemscope="" itemtype="http://schema.org/Article">
+        <div class="article-inner">
+          <div class="article">
+            <div class="inner">
+              <header class="article-header">
+                <h1 class="article-title" itemprop="name">在MongoDB中使用JOIN操作</h1>
+                <a href="https://github.com/hexojs/site/edit/master/source/zh-cn/mongodb/join.md" class="article-edit-link" title="改进本文"><i class="fa fa-pencil"></i></a>
+              </header>
+              <div class="article-content" itemprop="articleBody">
+                <h3 id="1、SQL" class="article-heading"><a href="#1、SQL" class="headerlink" title="1、SQL"></a>1、SQL<a class="article-anchor" href="#1、SQL" aria-hidden="true"></a></h3><p>SQL与NoSQL最大的不同之一就是不支持JOIN，在传统的数据库中，SQL JOIN子句允许你使用普通的字段，在两个或者是更多表中的组合表中的每行数据。例如，如果你有表books和publishers，你可以像下面这样写命令：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> book.title, publisher.name</span><br><span class="line"><span class="keyword">FROM</span> book</span><br><span class="line"><span class="keyword">LEFT</span> <span class="keyword">JOIN</span> book.publisher_id <span class="keyword">ON</span> publisher.id;</span><br></pre></td></tr></table></figure>
+<p>换句话说，book表中的publisher_id字段引用了publishers表中的id字典。这些都是很常见的例子：对于每个publisher都可以拥有成千上万本书，如果你想更新publisher的信息的时候，我们只需要更改一条记录。数据的冗余是很小的，因为我们不需要为每本书来重复更新他的publisher信息，这种技术已基本当做一种规范化的东西了。SQL数据库提供了一些列的规范与约束条件来保障数据关联性。</p>
+<p>NoSQL == No JOIN?<br>并不都是这样吧。。。。。</p>
+<p>面向文档的数据库，例如MongoDB，被设计用来存储非结构化的数据，理想情况下，这些数据是在数据集合中是相互没有关联的，如果一条数据包含两次或者更多次，那数据就重复了。因为大部分情况下我们还是需要数据关联的，只有很少的情况下才会不需要关联数据，</p>
+<p>，看来NoSQL这些特性看来让人失望啊。MongoDB 3.2 介绍了一个新的$lookup操作，这个操作可以提供一个类似于LEFT OUTER JOIN的操作在两个或者是更多的条件下。</p>
+<h3 id="2、MongoDB-Aggregation" class="article-heading"><a href="#2、MongoDB-Aggregation" class="headerlink" title="2、MongoDB Aggregation"></a>2、MongoDB Aggregation<a class="article-anchor" href="#2、MongoDB-Aggregation" aria-hidden="true"></a></h3><p>$lookup仅仅在 aggregation操作中才被允许使用，想想他作为一个管道操作：查询，过滤，组合结果。一个操作的输出被作为下一个的输入。Aggregation比简单的查询操作更难于理解，而且这些操作通常运行很慢，然而他们很高效，Aggregation可以使用一个很好的例子来解释，假设我们使用user数据集合来创建一个社交平台，在每个独立的文档中存储没个用户的信息，例如</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">"_id"</span>: ObjectID(<span class="string">"45b83bda421238c76f5c1969"</span>),</span><br><span class="line">  <span class="string">"name"</span>: <span class="string">"User One"</span>,</span><br><span class="line">  <span class="string">"email: "</span>userone@email.com<span class="string">",</span></span><br><span class="line"><span class="string">  "</span>country<span class="string">": "</span>UK<span class="string">",</span></span><br><span class="line"><span class="string">  "</span>dob<span class="string">": ISODate("</span><span class="number">1999</span><span class="number">-09</span><span class="number">-13</span>T00:<span class="number">00</span>:<span class="number">00.000</span>Z<span class="string">")</span></span><br><span class="line"><span class="string">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>我们可以向user这个集合中添加足够多的用户，但是每个MongoDB文档都必须有一个为一个_id字段值，这个_id字段值就像SQL中的键，在我们没有明确指定_id的时候会被自动的加入到文档中。我们的社交网站现在需要一个post集合，这个结合存储用户的评论，这个文档存储纯文本，时间，评分，一个被写到user_id字段的玩家引用。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">"_id"</span>: ObjectID(<span class="string">"17c9812acff9ac0bba018cc1"</span>),</span><br><span class="line">  <span class="string">"user_id"</span>: ObjectID(<span class="string">"45b83bda421238c76f5c1969"</span>),</span><br><span class="line">  <span class="string">"date: ISODate("</span><span class="number">2016</span><span class="number">-09</span><span class="number">-05</span>T03:<span class="number">05</span>:<span class="number">00.123</span>Z<span class="string">"),</span></span><br><span class="line"><span class="string">  "</span>text<span class="string">": "</span>My life story so far<span class="string">",</span></span><br><span class="line"><span class="string">  "</span>rating<span class="string">": "</span>important<span class="string">"</span></span><br><span class="line"><span class="string">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>我们现在想要显示最近具有important评论的二十条数据，这些数据来自所有的用户，并且是按照时间排序的。每一个返回的文档中应该包含评论的文本，发布评论的时间，以及相关的用户的名字和国家。</p>
+<p>MongoDB数据库的aggregate查询是通过传递管道操作的数组，这个数组中顺序的定了每个操作。首先，我们需要从所有的post集合中提取出所有的文档，这些文档使用$match记性准确rating过滤。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&#123; <span class="string">"$match"</span>: &#123; <span class="string">"rating"</span>: <span class="string">"important"</span> &#125; &#125;</span><br></pre></td></tr></table></figure>
+<p>MongoDB数据库的aggregate查询是通过传递管道操作的数组，这个数组中顺序的定了每个操作。首先，我们需要从所有的post集合中提取出所有的文档，这些文档使用$match记性准确rating过滤。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&#123; <span class="string">"$match"</span>: &#123; <span class="string">"rating"</span>: <span class="string">"important"</span> &#125; &#125;</span><br></pre></td></tr></table></figure>
+<p>我们现在需要对过滤出来的文档按照时间，使用$sort操作进行排序。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&#123; <span class="string">"$sort"</span>: &#123; <span class="string">"date"</span>: <span class="number">-1</span> &#125; &#125;</span><br></pre></td></tr></table></figure>
+<p>因为我们要仅仅返回二十条数据，我们可以使用$limit来限制我们需要处理的文档数量。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&#123; <span class="string">"$limit"</span>: <span class="number">20</span> &#125;</span><br></pre></td></tr></table></figure>
+<p>我们现在使用$lookup操作从user集合中连接数据，这个操作需要一个四个参数的对象：</p>
+<p>1、localField：在输入文档中的查找字段</p>
+<p>2、from：需要连接的集合</p>
+<p>3、foreignField：需要在from集合中查找的字段</p>
+<p>4、as：输出的字段名字</p>
+<p>所以我们的操作是这样的：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&#123; <span class="string">"$lookup"</span>: &#123;</span><br><span class="line">  <span class="string">"localField"</span>: <span class="string">"user_id"</span>,</span><br><span class="line">  <span class="string">"from"</span>: <span class="string">"user"</span>,</span><br><span class="line">  <span class="string">"foreignField"</span>: <span class="string">"_id"</span>,</span><br><span class="line">  <span class="string">"as"</span>: <span class="string">"userinfo"</span></span><br><span class="line">&#125; &#125;</span><br></pre></td></tr></table></figure>
+<p>在我们的输出中将会创建一个名为userinfo的新字段，他是一个数组，其中每个元素都是在user集合中匹配的元素。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="string">"userinfo"</span>: [</span><br><span class="line">  &#123; <span class="string">"name"</span>: <span class="string">"User One"</span>, ... &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<p>在post.user_id与user._id之间，我们具有一对一的关系，因为对于每一个post只有一个用户。因此我们的userinfo数组将会仅仅包含一个元素，我们可以说使用 $unwind操作来解构他并插入到一个自文档中。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&#123; <span class="string">"$unwind"</span>: <span class="string">"$userinfo"</span> &#125;</span><br></pre></td></tr></table></figure>
+<p>现在的输出将会转化成更加常用的结构：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="string">"userinfo"</span>: &#123;</span><br><span class="line">  <span class="string">"name"</span>: <span class="string">"User One"</span>,</span><br><span class="line">  <span class="string">"email: "</span>userone@email.com<span class="string">",</span></span><br><span class="line"><span class="string">  …</span></span><br><span class="line"><span class="string">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>最终我们可以在管道中使用 $project操作返回评论信息，评论的时间，评论的用户名，国家等。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&#123; <span class="string">"$project"</span>: &#123;</span><br><span class="line">  <span class="string">"text"</span>: <span class="number">1</span>,</span><br><span class="line">  <span class="string">"date"</span>: <span class="number">1</span>,</span><br><span class="line">  <span class="string">"userinfo.name"</span>: <span class="number">1</span>,</span><br><span class="line">  <span class="string">"userinfo.country"</span>: <span class="number">1</span></span><br><span class="line">&#125; &#125;</span><br></pre></td></tr></table></figure>
+<p>合并上面所有的操作</p>
+<p>我们最终的聚合查询匹配的评论，按照顺序排序，限制最新的二十条信息，连接用户的数据，扁平用户数组，最后只返回我们需要的必须数据，总的命令如下：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">db.post.aggregate([</span><br><span class="line">  &#123; <span class="string">"$match"</span>: &#123; <span class="string">"rating"</span>: <span class="string">"important"</span> &#125; &#125;,</span><br><span class="line">  &#123; <span class="string">"$sort"</span>: &#123; <span class="string">"date"</span>: <span class="number">-1</span> &#125; &#125;,</span><br><span class="line">  &#123; <span class="string">"$limit"</span>: <span class="number">20</span> &#125;,</span><br><span class="line">  &#123; <span class="string">"$lookup"</span>: &#123;</span><br><span class="line">    <span class="string">"localField"</span>: <span class="string">"user_id"</span>,</span><br><span class="line">    <span class="string">"from"</span>: <span class="string">"user"</span>,</span><br><span class="line">    <span class="string">"foreignField"</span>: <span class="string">"_id"</span>,</span><br><span class="line">    <span class="string">"as"</span>: <span class="string">"userinfo"</span></span><br><span class="line">  &#125; &#125;,</span><br><span class="line">  &#123; <span class="string">"$unwind"</span>: <span class="string">"$userinfo"</span> &#125;,</span><br><span class="line">  &#123; <span class="string">"$project"</span>: &#123;</span><br><span class="line">    <span class="string">"text"</span>: <span class="number">1</span>,</span><br><span class="line">    <span class="string">"date"</span>: <span class="number">1</span>,</span><br><span class="line">    <span class="string">"userinfo.name"</span>: <span class="number">1</span>,</span><br><span class="line">    <span class="string">"userinfo.country"</span>: <span class="number">1</span></span><br><span class="line">  &#125; &#125;</span><br><span class="line">]);</span><br></pre></td></tr></table></figure>
+<p>结果是一个拥有二十个文档的集合，例如：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">[</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="string">"text"</span>: <span class="string">"The latest post"</span>,</span><br><span class="line">    <span class="string">"date: ISODate("</span><span class="number">2016</span><span class="number">-09</span><span class="number">-27</span>T00:<span class="number">00</span>:<span class="number">00.000</span>Z<span class="string">"),</span></span><br><span class="line"><span class="string">    "</span>userinfo<span class="string">": &#123;</span></span><br><span class="line"><span class="string">      "</span>name<span class="string">": "</span>User One<span class="string">",</span></span><br><span class="line"><span class="string">      "</span>country<span class="string">": "</span>UK<span class="string">"</span></span><br><span class="line"><span class="string">    &#125;</span></span><br><span class="line"><span class="string">  &#125;,</span></span><br><span class="line"><span class="string">  &#123;</span></span><br><span class="line"><span class="string">    "</span>text<span class="string">": "</span>Another post<span class="string">",</span></span><br><span class="line"><span class="string">    "</span>date: ISODate(<span class="string">"2016-09-26T00:00:00.000Z"</span>),</span><br><span class="line">    <span class="string">"userinfo"</span>: &#123;</span><br><span class="line">      <span class="string">"name"</span>: <span class="string">"User One"</span>,</span><br><span class="line">      <span class="string">"country"</span>: <span class="string">"UK"</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  ...</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<p>MongoDB的$lookup很好用而且很高效，但是上面这个基础的例子只是一个组合的集合查询。他不是一个对SQL中的更加高效的JOIN子句的替代。而且MongoDB也提供了一些限制，如果user集合被删除了，post文档还是会保留。</p>
+<p>理想情况下，这个$lookup操作应该不会经常使用，如果你需要经常使用它，那么你就使用了错误的数据存储了（数据库）：如果你有相关联的数据，应该使用关联数据库（SQL）。</p>
+<p>也就是说$lookup是一个MongoDB 3.2新加入的，他解决了当在Nosql数据库中使用一些小的相关联的数据查询的时候一些令人失望的问题。</p>
+<p>参考链接<a href="https://www.cnblogs.com/duhuo/p/6068879.html" target="_blank" rel="noopener">https://www.cnblogs.com/duhuo/p/6068879.html</a></p>
+
+              </div>
+              <footer class="article-footer">
+                <time class="article-footer-updated" datetime="2019-06-28T03:36:04.266Z" itemprop="dateModified">上次更新：2019-06-28</time>
+                <a href="good.html" class="article-footer-prev" title="另类优化"><i class="fa fa-chevron-left"></i><span>上一页</span></a><a href="first.html" class="article-footer-next" title="$first输出字段"><span>下一页</span><i class="fa fa-chevron-right"></i></a>
+              </footer>
+              
+
+<script>
+  var disqus_shortname = 'hexojs';
+  var disqus_url = 'https://www.wulisensen.com/zh-cn/mongodb/join.html';
+  var disqus_title = "在MongoDB中使用JOIN操作";
+  var disqus_config = function(){
+    this.language = 'zh';
+  };
+  (function(){
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = 'https://go.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+            </div>
+          </div>
+          <aside id="article-toc" role="navigation">
+            <div id="article-toc-inner">
+              <strong class="sidebar-title">目录</strong>
+              <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1、SQL"><span class="toc-text">1、SQL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2、MongoDB-Aggregation"><span class="toc-text">2、MongoDB Aggregation</span></a></li></ol>
+              <a href="#" id="article-toc-top">回到顶部</a>
+            </div>
+          </aside>
+        </div>
+      </article>
+      <aside id="sidebar" role="navigation">
+  <div class="inner">
+    <strong class="sidebar-title">MongoDB</strong><a href="index.html" class="sidebar-link">安装</a><a href="init.html" class="sidebar-link">初始化</a><a href="update.html" class="sidebar-link">更新数据</a><a href="optimize.html" class="sidebar-link">优化</a><a href="example.html" class="sidebar-link">优化实战</a><a href="good.html" class="sidebar-link">另类优化</a><a href="join.html" class="sidebar-link current">使用JOIN操作</a><a href="first.html" class="sidebar-link">$first输出字段</a><a href="object.html" class="sidebar-link">对象数组的查询</a><a href="push.html" class="sidebar-link">$push字段转数组</a><a href="unwind.html" class="sidebar-link">$unwind解构字段</a>
+  </div>
+</aside>
+    </div>
+  </div>
+</div>
+
+    <footer id="footer" class="wrapper">
+  <div class="inner">
+    <div id="footer-copyright">
+      &copy; 2019<br>
+     <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=18052356" target="_blank"><i></i>京ICP备18052356号</a>
+    </div>
+  </div>
+</footer>
+
+  </div>
+  <div id="mobile-nav-dimmer"></div>
+  <nav id="mobile-nav">
+  <div id="mobile-nav-inner">
+    <ul id="mobile-nav-list">
+      <a href="../javascript/" class="mobile-nav-link">JavaScript</a><a href="../css/" class="mobile-nav-link">CSS</a><a href="../python/" class="mobile-nav-link">Python</a><a href="../redis/" class="mobile-nav-link">Redis</a><a href="../mysql/" class="mobile-nav-link">MySQL</a><a href="../mongodb/" class="mobile-nav-link">MongoDB</a><a href="../linux/" class="mobile-nav-link">Linux</a><a href="../nginx/" class="mobile-nav-link">Nginx</a><a href="../git/" class="mobile-nav-link">Git</a><a href="../gulp/" class="mobile-nav-link">Gulp</a>
+      <li class="mobile-nav-item">
+        <a href="https://github.com/hexojs/hexo" class="mobile-nav-link" rel="external" target="_blank">GitHub</a>
+      </li>
+    </ul>
+    
+      <strong class="mobile-nav-title">MongoDB</strong><a href="index.html" class="mobile-nav-link">安装</a><a href="init.html" class="mobile-nav-link">初始化</a><a href="update.html" class="mobile-nav-link">更新数据</a><a href="optimize.html" class="mobile-nav-link">优化</a><a href="example.html" class="mobile-nav-link">优化实战</a><a href="good.html" class="mobile-nav-link">另类优化</a><a href="join.html" class="mobile-nav-link current">使用JOIN操作</a><a href="first.html" class="mobile-nav-link">$first输出字段</a><a href="object.html" class="mobile-nav-link">对象数组的查询</a><a href="push.html" class="mobile-nav-link">$push字段转数组</a><a href="unwind.html" class="mobile-nav-link">$unwind解构字段</a>
+    
+  </div>
+  <div id="mobile-lang-select-wrap">
+    <span id="mobile-lang-select-label"><i class="fa fa-globe"></i><span>简体中文</span></span>
+    <select id="mobile-lang-select" data-canonical="">
+      
+        <option value="en">English</option>
+      
+        <option value="zh-tw">正體中文</option>
+      
+        <option value="zh-cn" selected>简体中文</option>
+      
+        <option value="ru">Русский</option>
+      
+        <option value="ko">한국어</option>
+      
+        <option value="pt-br">Português (Brasil)</option>
+      
+    </select>
+  </div>
+</nav>
+  <!-- Scripts -->
+<!-- build:js build/js/main.js -->
+<script src="//p2.ifengimg.com/a/2017/1229/toc.js"></script>
+<script src="//p2.ifengimg.com/a/2017/1229/mobile_nav.js"></script>
+<!-- endbuild -->
+
+<!-- Algolia -->
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script>
+<script type="text/javascript">
+document.getElementById('search-input-wrap').classList.add('on');
+docsearch({
+  apiKey: 'cdea7d4e47d84f6145b77e7f68689f35',
+  indexName: 'hexo_zh-cn',
+  inputSelector: '#search-input'
+});
+</script>
+
+
+</body>
+</html>

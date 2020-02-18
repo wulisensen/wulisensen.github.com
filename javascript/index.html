@@ -2,7 +2,7 @@
 <html lang="zh-cn">
 <head prefix="og: http://ogp.me/ns#"><meta name="generator" content="Hexo 3.7.1">
   <meta charset="utf-8">
-  <title>简介 | WuLiSenSen的技术博客</title>
+  <title>ES6简介 | WuLiSenSen的技术博客</title>
   <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script>
@@ -11,21 +11,21 @@
     }
   </script>
   <!-- Canonical links -->
-  <link rel="canonical" href="https://hexo.io/zh-cn/javascript/index.html">
+  <link rel="canonical" href="https://www.wulisensen.com/zh-cn/javascript/index.html">
   <!-- Alternative links -->
   
     
-      <link rel="alternative" hreflang="en" href="https://hexo.io/javascript/index.html">
+      <link rel="alternative" hreflang="en" href="https://www.wulisensen.com/javascript/index.html">
     
-      <link rel="alternative" hreflang="zh-tw" href="https://hexo.io/zh-tw/javascript/index.html">
+      <link rel="alternative" hreflang="zh-tw" href="https://www.wulisensen.com/zh-tw/javascript/index.html">
     
-      <link rel="alternative" hreflang="zh-cn" href="https://hexo.io/zh-cn/javascript/index.html">
+      <link rel="alternative" hreflang="zh-cn" href="https://www.wulisensen.com/zh-cn/javascript/index.html">
     
-      <link rel="alternative" hreflang="ru" href="https://hexo.io/ru/javascript/index.html">
+      <link rel="alternative" hreflang="ru" href="https://www.wulisensen.com/ru/javascript/index.html">
     
-      <link rel="alternative" hreflang="ko" href="https://hexo.io/ko/javascript/index.html">
+      <link rel="alternative" hreflang="ko" href="https://www.wulisensen.com/ko/javascript/index.html">
     
-      <link rel="alternative" hreflang="pt-br" href="https://hexo.io/pt-br/javascript/index.html">
+      <link rel="alternative" hreflang="pt-br" href="https://www.wulisensen.com/pt-br/javascript/index.html">
     
   
   <!-- Icon -->
@@ -44,27 +44,39 @@
   <link rel="icon" type="image/png" href="/icon/favicon-32x32.png" sizes="32x32">
   <meta name="msapplication-TileColor" content="#2f83cd">
   <meta name="msapplication-TileImage" content="/icon/mstile-144x144.png">
+  <link rel="icon" href="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBH%0AZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE3LjAuMiwgU1ZHIEV4cG9y%0AdCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8%0AIURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4i%0AICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcx%0AMS5kdGQiPgo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IuWcluWxpF8xIiB4bWxu%0Acz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJo%0AdHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCIK%0ACSB3aWR0aD0iNTEycHgiIGhlaWdodD0iNTEycHgiIHZpZXdCb3g9IjAgMCA1%0AMTIgNTEyIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA1MTIgNTEyIiB4%0AbWw6c3BhY2U9InByZXNlcnZlIj4KPHBhdGggZmlsbD0iIzBFODNDRCIgZD0i%0ATTI1Ni40LDI1LjhsLTIwMCwxMTUuNUw1NiwzNzEuNWwxOTkuNiwxMTQuN2wy%0AMDAtMTE1LjVsMC40LTIzMC4yTDI1Ni40LDI1Ljh6IE0zNDksMzU0LjZsLTE4%0ALjQsMTAuNwoJbC0xOC42LTExVjI3NUgyMDB2NzkuNmwtMTguNCwxMC43bC0x%0AOC42LTExdi0xOTdsMTguNS0xMC42bDE4LjUsMTAuOFYyMzdoMTEydi03OS42%0AbDE4LjUtMTAuNmwxOC41LDEwLjhWMzU0LjZ6Ii8+Cjwvc3ZnPgo=" type="image/x-icon">
   <!-- CSS -->
   <link href="//p0.ifengimg.com/a/2018/0118/navy.css" rel="stylesheet" type="text/css">
-  <!-- <link href="//fonts.lug.ustc.edu.cn/css?family=Lato:300,400,700" rel="stylesheet" type="text/css"> -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
   <style>
   .article-content{ min-height: 500px; }
+  #footer a i {
+    display: inline-block;
+    width: 14px;
+    height: 16px;
+    margin-right: 6px;
+    vertical-align: middle;
+    margin-top: -4px;
+    background: url(https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/icon-police.png?v=md5) 0 0 no-repeat
+  }
+  #logo-wrap #logo {
+    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBH%0AZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE3LjAuMiwgU1ZHIEV4cG9y%0AdCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8%0AIURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4i%0AICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcx%0AMS5kdGQiPgo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IuWcluWxpF8xIiB4bWxu%0Acz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJo%0AdHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCIK%0ACSB3aWR0aD0iNTEycHgiIGhlaWdodD0iNTEycHgiIHZpZXdCb3g9IjAgMCA1%0AMTIgNTEyIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA1MTIgNTEyIiB4%0AbWw6c3BhY2U9InByZXNlcnZlIj4KPHBhdGggZmlsbD0iIzBFODNDRCIgZD0i%0ATTI1Ni40LDI1LjhsLTIwMCwxMTUuNUw1NiwzNzEuNWwxOTkuNiwxMTQuN2wy%0AMDAtMTE1LjVsMC40LTIzMC4yTDI1Ni40LDI1Ljh6IE0zNDksMzU0LjZsLTE4%0ALjQsMTAuNwoJbC0xOC42LTExVjI3NUgyMDB2NzkuNmwtMTguNCwxMC43bC0x%0AOC42LTExdi0xOTdsMTguNS0xMC42bDE4LjUsMTAuOFYyMzdoMTEydi03OS42%0AbDE4LjUtMTAuNmwxOC41LDEwLjhWMzU0LjZ6Ii8+Cjwvc3ZnPgo=);
+    background-size: contain;
+  }
   </style>
   <!-- RSS -->
   <link rel="alternate" href="/atom.xml" title="WuLiSenSen的技术博客">
   <!-- Open Graph -->
   <meta name="description" content="1、变量的 定义  let与consta、为什么不用var：var没有块级作用域，定义后在当前闭包中都可以访问，如果变量名重复，就会覆盖前面定义的变量，并且也有可能被其他人更改。  var在for循环标记变量共享，一般在循环中使用的i会被共享，其本质上也是由于没有块级作用域造成的，由于情况比较多见和特殊，单独算一个问题。 b、为什么用let：let定义的变量有作用域： 在自己的作用域中不会被其他人">
 <meta property="og:type" content="website">
-<meta property="og:title" content="简介">
-<meta property="og:url" content="https://hexo.io/zh-cn/javascript/index.html">
+<meta property="og:title" content="ES6简介">
+<meta property="og:url" content="https://www.wulisensen.com/zh-cn/javascript/index.html">
 <meta property="og:site_name" content="WuLiSenSen的技术博客">
 <meta property="og:description" content="1、变量的 定义  let与consta、为什么不用var：var没有块级作用域，定义后在当前闭包中都可以访问，如果变量名重复，就会覆盖前面定义的变量，并且也有可能被其他人更改。  var在for循环标记变量共享，一般在循环中使用的i会被共享，其本质上也是由于没有块级作用域造成的，由于情况比较多见和特殊，单独算一个问题。 b、为什么用let：let定义的变量有作用域： 在自己的作用域中不会被其他人">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2018-09-22T11:13:04.425Z">
+<meta property="og:updated_time" content="2019-06-28T04:27:06.809Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="简介">
+<meta name="twitter:title" content="ES6简介">
 <meta name="twitter:description" content="1、变量的 定义  let与consta、为什么不用var：var没有块级作用域，定义后在当前闭包中都可以访问，如果变量名重复，就会覆盖前面定义的变量，并且也有可能被其他人更改。  var在for循环标记变量共享，一般在循环中使用的i会被共享，其本质上也是由于没有块级作用域造成的，由于情况比较多见和特殊，单独算一个问题。 b、为什么用let：let定义的变量有作用域： 在自己的作用域中不会被其他人">
 <meta name="twitter:site" content="hexojs">
 <meta property="fb:admins" content="100000247608790">
@@ -80,6 +92,16 @@
   ga('send', 'pageview');
 </script>
 
+  <!-- Baidu Count -->
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?a88436595b1b6b29a3e65f5eac5b2d30";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
 </head>
 
 <body>
@@ -90,7 +112,7 @@
       <a href="/zh-cn/" id="logo"></a>
     </h1>
     <nav id="main-nav">
-      <a href="/javascript/" class="main-nav-link">JavaScript</a><a href="/css/" class="main-nav-link">CSS</a><a href="/python/" class="main-nav-link">Python</a><a href="/redis/" class="main-nav-link">Redis</a><a href="/mysql/" class="main-nav-link">MySQL</a><a href="/mongodb/" class="main-nav-link">MongoDB</a><a href="/linux/" class="main-nav-link">Linux</a><a href="/nginx/" class="main-nav-link">Nginx</a><a href="/git/" class="main-nav-link">Git</a>
+      <a href="../javascript/" class="main-nav-link">JavaScript</a><a href="../css/" class="main-nav-link">CSS</a><a href="../python/" class="main-nav-link">Python</a><a href="../redis/" class="main-nav-link">Redis</a><a href="../mysql/" class="main-nav-link">MySQL</a><a href="../mongodb/" class="main-nav-link">MongoDB</a><a href="../linux/" class="main-nav-link">Linux</a><a href="../nginx/" class="main-nav-link">Nginx</a><a href="../git/" class="main-nav-link">Git</a><a href="../gulp/" class="main-nav-link">Gulp</a>
     </nav>
     <a id="mobile-nav-toggle">
       <span class="mobile-nav-toggle-bar"></span>
@@ -108,7 +130,7 @@
           <div class="article">
             <div class="inner">
               <header class="article-header">
-                <h1 class="article-title" itemprop="name">简介</h1>
+                <h1 class="article-title" itemprop="name">ES6简介</h1>
                 <a href="https://github.com/hexojs/site/edit/master/source/zh-cn/javascript/index.md" class="article-edit-link" title="改进本文"><i class="fa fa-pencil"></i></a>
               </header>
               <div class="article-content" itemprop="articleBody">
@@ -117,7 +139,10 @@
 <h3 id="b、为什么用let：" class="article-heading"><a href="#b、为什么用let：" class="headerlink" title="b、为什么用let："></a>b、为什么用let：<a class="article-anchor" href="#b、为什么用let：" aria-hidden="true"></a></h3><p>let定义的变量有作用域： 在自己的作用域中不会被其他人访问</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="keyword">let</span> s = <span class="string">"s"</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(s);   ---&gt; <span class="literal">undefined</span></span><br><span class="line">- 不会影响<span class="built_in">window</span></span><br><span class="line"><span class="keyword">let</span> win = <span class="string">"win"</span>;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">window</span>.win);   ---&gt;<span class="literal">undefined</span></span><br><span class="line">-嵌套循环不会相互影响</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="number">3</span>; i++) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"out"</span>, i);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="number">2</span>; i++) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"in"</span>, i);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">""</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="c、为什么用const" class="article-heading"><a href="#c、为什么用const" class="headerlink" title="c、为什么用const"></a>c、为什么用const<a class="article-anchor" href="#c、为什么用const" aria-hidden="true"></a></h3><p><code>const</code>是静态变量，定以后不允许再被修改或者重新定义。<br>在严格模式下，重新定义或者修改静态变量会报错。<br>不同的块级作用域下，可以定义相同名字的静态变量。<br><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> MAX_CNT = <span class="number">10</span>;</span><br><span class="line">MAX_CNT = <span class="number">11</span>;    ---&gt;报错</span><br></pre></td></tr></table></figure></p>
-<h2 id="2、解构赋值" class="article-heading"><a href="#2、解构赋值" class="headerlink" title="2、解构赋值"></a>2、解构赋值<a class="article-anchor" href="#2、解构赋值" aria-hidden="true"></a></h2><h3 id="a、解构赋值：-let-a-b-c-“11”-”22”-”33”" class="article-heading"><a href="#a、解构赋值：-let-a-b-c-“11”-”22”-”33”" class="headerlink" title="a、解构赋值：   let [a,b,c] = [“11”,”22”,”33”];"></a>a、解构赋值：   let [a,b,c] = [“11”,”22”,”33”];<a class="article-anchor" href="#a、解构赋值：-let-a-b-c-“11”-”22”-”33”" aria-hidden="true"></a></h3><h3 id="b、省略赋值：-let-x-1-2-3" class="article-heading"><a href="#b、省略赋值：-let-x-1-2-3" class="headerlink" title="b、省略赋值：   let [, , x] = [1, 2, 3];"></a>b、省略赋值：   let [, , x] = [1, 2, 3];<a class="article-anchor" href="#b、省略赋值：-let-x-1-2-3" aria-hidden="true"></a></h3><h3 id="c、不行参数：-let-first-…other-1-2-3-4-5" class="article-heading"><a href="#c、不行参数：-let-first-…other-1-2-3-4-5" class="headerlink" title="c、不行参数：   let [first, , …other] = [1, 2, 3, 4, 5];"></a>c、不行参数：   let [first, , …other] = [1, 2, 3, 4, 5];<a class="article-anchor" href="#c、不行参数：-let-first-…other-1-2-3-4-5" aria-hidden="true"></a></h3><h3 id="d、对写的解构赋值：" class="article-heading"><a href="#d、对写的解构赋值：" class="headerlink" title="d、对写的解构赋值："></a>d、对写的解构赋值：<a class="article-anchor" href="#d、对写的解构赋值：" aria-hidden="true"></a></h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">    <span class="keyword">let</span> obj = &#123;</span><br><span class="line">    param1: <span class="string">"p1"</span>,</span><br><span class="line">    param2: <span class="string">"p2"</span></span><br><span class="line">    &#125;;</span><br><span class="line"><span class="keyword">let</span> &#123;param1, param2&#125; = obj</span><br><span class="line"><span class="built_in">console</span>.log(param1, param2);</span><br><span class="line"><span class="comment">// 相当于</span></span><br><span class="line"><span class="keyword">let</span> param1 = obj.param1;</span><br><span class="line"><span class="keyword">let</span> param2 = obj.param2;</span><br><span class="line"><span class="comment">// 但是如果我非想叫p1和p2呢</span></span><br><span class="line"><span class="keyword">let</span> &#123;<span class="attr">param1</span>: p1, <span class="attr">param2</span>: p2&#125; = obj;</span><br><span class="line"><span class="built_in">console</span>.log(p1, p2);</span><br></pre></td></tr></table></figure>
+<h2 id="2、解构赋值" class="article-heading"><a href="#2、解构赋值" class="headerlink" title="2、解构赋值"></a>2、解构赋值<a class="article-anchor" href="#2、解构赋值" aria-hidden="true"></a></h2><h3 id="a、解构赋值：" class="article-heading"><a href="#a、解构赋值：" class="headerlink" title="a、解构赋值："></a>a、解构赋值：<a class="article-anchor" href="#a、解构赋值：" aria-hidden="true"></a></h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> [a,b,c] = [<span class="string">"11"</span>,<span class="string">"22"</span>,<span class="string">"33"</span>];</span><br></pre></td></tr></table></figure>
+<h3 id="b、省略赋值：" class="article-heading"><a href="#b、省略赋值：" class="headerlink" title="b、省略赋值："></a>b、省略赋值：<a class="article-anchor" href="#b、省略赋值：" aria-hidden="true"></a></h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> [, , x] = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br></pre></td></tr></table></figure>
+<h3 id="c、不定参数：" class="article-heading"><a href="#c、不定参数：" class="headerlink" title="c、不定参数："></a>c、不定参数：<a class="article-anchor" href="#c、不定参数：" aria-hidden="true"></a></h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> [first, , ...other] = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</span><br></pre></td></tr></table></figure>
+<h3 id="d、对写的解构赋值：" class="article-heading"><a href="#d、对写的解构赋值：" class="headerlink" title="d、对写的解构赋值："></a>d、对写的解构赋值：<a class="article-anchor" href="#d、对写的解构赋值：" aria-hidden="true"></a></h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> obj = &#123;</span><br><span class="line">    param1: <span class="string">"p1"</span>,</span><br><span class="line">    param2: <span class="string">"p2"</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">let</span> &#123;param1, param2&#125; = obj</span><br><span class="line"><span class="built_in">console</span>.log(param1, param2);</span><br><span class="line"><span class="comment">// 相当于</span></span><br><span class="line"><span class="keyword">let</span> param1 = obj.param1;</span><br><span class="line"><span class="keyword">let</span> param2 = obj.param2;</span><br><span class="line"><span class="comment">// 但是如果我非想叫p1和p2呢</span></span><br><span class="line"><span class="keyword">let</span> &#123;<span class="attr">param1</span>: p1, <span class="attr">param2</span>: p2&#125; = obj;</span><br><span class="line"><span class="built_in">console</span>.log(p1, p2);</span><br></pre></td></tr></table></figure>
 <h3 id="e、默认值" class="article-heading"><a href="#e、默认值" class="headerlink" title="e、默认值"></a>e、默认值<a class="article-anchor" href="#e、默认值" aria-hidden="true"></a></h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> [a = <span class="string">"a"</span>, b = <span class="string">"b"</span>, c = <span class="string">"c"</span>] = [<span class="number">1</span>, , <span class="number">3</span>];</span><br><span class="line"><span class="built_in">console</span>.log(a, b, c);</span><br></pre></td></tr></table></figure>
 <h2 id="3、函数" class="article-heading"><a href="#3、函数" class="headerlink" title="3、函数"></a>3、函数<a class="article-anchor" href="#3、函数" aria-hidden="true"></a></h2><h3 id="a、默认参数" class="article-heading"><a href="#a、默认参数" class="headerlink" title="a、默认参数"></a>a、默认参数<a class="article-anchor" href="#a、默认参数" aria-hidden="true"></a></h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">calc</span> (<span class="params">x = <span class="number">0</span>, y = <span class="number">0</span></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(x, y);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="b、默认参数作用域" class="article-heading"><a href="#b、默认参数作用域" class="headerlink" title="b、默认参数作用域"></a>b、默认参数作用域<a class="article-anchor" href="#b、默认参数作用域" aria-hidden="true"></a></h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> x = <span class="number">2</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span> (<span class="params">x, y = x</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(x, y);</span><br><span class="line">&#125;</span><br><span class="line">test(<span class="number">1</span>)；</span><br></pre></td></tr></table></figure>
@@ -131,15 +156,15 @@
 
               </div>
               <footer class="article-footer">
-                <time class="article-footer-updated" datetime="2018-09-22T11:13:04.425Z" itemprop="dateModified">上次更新：2018-09-22</time>
+                <time class="article-footer-updated" datetime="2019-06-28T04:27:06.809Z" itemprop="dateModified">上次更新：2019-06-28</time>
                 
               </footer>
               
 
 <script>
   var disqus_shortname = 'hexojs';
-  var disqus_url = 'https://hexo.io/zh-cn/javascript/index.html';
-  var disqus_title = "简介";
+  var disqus_url = 'https://www.wulisensen.com/zh-cn/javascript/index.html';
+  var disqus_title = "ES6简介";
   var disqus_config = function(){
     this.language = 'zh';
   };
@@ -155,7 +180,7 @@
           <aside id="article-toc" role="navigation">
             <div id="article-toc-inner">
               <strong class="sidebar-title">目录</strong>
-              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1、变量的-定义-let与const"><span class="toc-text">1、变量的 定义  let与const</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#a、为什么不用var："><span class="toc-text">a、为什么不用var：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#b、为什么用let："><span class="toc-text">b、为什么用let：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#c、为什么用const"><span class="toc-text">c、为什么用const</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2、解构赋值"><span class="toc-text">2、解构赋值</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#a、解构赋值：-let-a-b-c-“11”-”22”-”33”"><span class="toc-text">a、解构赋值：   let [a,b,c] = [“11”,”22”,”33”];</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#b、省略赋值：-let-x-1-2-3"><span class="toc-text">b、省略赋值：   let [, , x] = [1, 2, 3];</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#c、不行参数：-let-first-…other-1-2-3-4-5"><span class="toc-text">c、不行参数：   let [first, , …other] = [1, 2, 3, 4, 5];</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#d、对写的解构赋值："><span class="toc-text">d、对写的解构赋值：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#e、默认值"><span class="toc-text">e、默认值</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3、函数"><span class="toc-text">3、函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#a、默认参数"><span class="toc-text">a、默认参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#b、默认参数作用域"><span class="toc-text">b、默认参数作用域</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#c、rest参数-…（将非数组转换成-数组）"><span class="toc-text">c、rest参数 …（将非数组转换成 数组）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#d、spread参数-…（将数组转换成非数组）"><span class="toc-text">d、spread参数 …（将数组转换成非数组）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#e、箭头函数"><span class="toc-text">e、箭头函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#f、箭头函数简单应用"><span class="toc-text">f、箭头函数简单应用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#g、箭头函数this关键字不变"><span class="toc-text">g、箭头函数this关键字不变</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4、Symbol"><span class="toc-text">4、Symbol</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#a、Symbol基本使用"><span class="toc-text">a、Symbol基本使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#b、Symbol作为对象属性名"><span class="toc-text">b、Symbol作为对象属性名</span></a></li></ol></li></ol>
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1、变量的-定义-let与const"><span class="toc-text">1、变量的 定义  let与const</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#a、为什么不用var："><span class="toc-text">a、为什么不用var：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#b、为什么用let："><span class="toc-text">b、为什么用let：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#c、为什么用const"><span class="toc-text">c、为什么用const</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2、解构赋值"><span class="toc-text">2、解构赋值</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#a、解构赋值："><span class="toc-text">a、解构赋值：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#b、省略赋值："><span class="toc-text">b、省略赋值：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#c、不定参数："><span class="toc-text">c、不定参数：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#d、对写的解构赋值："><span class="toc-text">d、对写的解构赋值：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#e、默认值"><span class="toc-text">e、默认值</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3、函数"><span class="toc-text">3、函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#a、默认参数"><span class="toc-text">a、默认参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#b、默认参数作用域"><span class="toc-text">b、默认参数作用域</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#c、rest参数-…（将非数组转换成-数组）"><span class="toc-text">c、rest参数 …（将非数组转换成 数组）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#d、spread参数-…（将数组转换成非数组）"><span class="toc-text">d、spread参数 …（将数组转换成非数组）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#e、箭头函数"><span class="toc-text">e、箭头函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#f、箭头函数简单应用"><span class="toc-text">f、箭头函数简单应用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#g、箭头函数this关键字不变"><span class="toc-text">g、箭头函数this关键字不变</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4、Symbol"><span class="toc-text">4、Symbol</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#a、Symbol基本使用"><span class="toc-text">a、Symbol基本使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#b、Symbol作为对象属性名"><span class="toc-text">b、Symbol作为对象属性名</span></a></li></ol></li></ol>
               <a href="#" id="article-toc-top">回到顶部</a>
             </div>
           </aside>
@@ -173,8 +198,8 @@
     <footer id="footer" class="wrapper">
   <div class="inner">
     <div id="footer-copyright">
-      &copy; 2018 <a href="https://github.com/wulisensen/MyBlog" target="_blank">https://github.com/wulisensen/MyBlog</a><br>
-     如果你有任何问题，可以给我发邮件 wuguangsenwow@163.com
+      &copy; 2019<br>
+     <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=18052356" target="_blank"><i></i>京ICP备18052356号</a>
     </div>
   </div>
 </footer>
@@ -184,7 +209,7 @@
   <nav id="mobile-nav">
   <div id="mobile-nav-inner">
     <ul id="mobile-nav-list">
-      <a href="/javascript/" class="mobile-nav-link">JavaScript</a><a href="/css/" class="mobile-nav-link">CSS</a><a href="/python/" class="mobile-nav-link">Python</a><a href="/redis/" class="mobile-nav-link">Redis</a><a href="/mysql/" class="mobile-nav-link">MySQL</a><a href="/mongodb/" class="mobile-nav-link">MongoDB</a><a href="/linux/" class="mobile-nav-link">Linux</a><a href="/nginx/" class="mobile-nav-link">Nginx</a><a href="/git/" class="mobile-nav-link">Git</a>
+      <a href="../javascript/" class="mobile-nav-link">JavaScript</a><a href="../css/" class="mobile-nav-link">CSS</a><a href="../python/" class="mobile-nav-link">Python</a><a href="../redis/" class="mobile-nav-link">Redis</a><a href="../mysql/" class="mobile-nav-link">MySQL</a><a href="../mongodb/" class="mobile-nav-link">MongoDB</a><a href="../linux/" class="mobile-nav-link">Linux</a><a href="../nginx/" class="mobile-nav-link">Nginx</a><a href="../git/" class="mobile-nav-link">Git</a><a href="../gulp/" class="mobile-nav-link">Gulp</a>
       <li class="mobile-nav-item">
         <a href="https://github.com/hexojs/hexo" class="mobile-nav-link" rel="external" target="_blank">GitHub</a>
       </li>
@@ -214,7 +239,6 @@
 </nav>
   <!-- Scripts -->
 <!-- build:js build/js/main.js -->
-<script src="/js/lang_select.js"></script>
 <script src="//p2.ifengimg.com/a/2017/1229/toc.js"></script>
 <script src="//p2.ifengimg.com/a/2017/1229/mobile_nav.js"></script>
 <!-- endbuild -->
